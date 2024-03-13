@@ -1,0 +1,50 @@
+.qrmain{
+    /* background-color: #c01b47; */
+    background-color: #ffe5ec;
+    /* margin-left: 20px; */
+    width: 100vw;
+    height: 100vh;
+    padding-top: 20px;
+
+}
+.qrcode{
+    margin-left: 20px;
+}
+.qrhead{
+    text-align: center;
+    margin-top: 20px;
+}
+.templ{
+    margin-top: 5vh;
+}
+.namee{
+    width:30vw;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.eemail{
+    width: 30vw;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.gqr{
+    width: 30vw;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+
+}
+.emname{
+    text-align: center;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.ememail{
+    text-align: center;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.emqr{
+    text-align: center;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}

@@ -1,0 +1,60 @@
+.templo{
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid black 2px;
+    margin-top: 10vh;
+    
+}
+.namee{
+    width:20vw;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.ename{
+    width:20vw;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+
+.semail{
+    width:20vw;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.emname{
+    text-align: center;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.ememail{
+    text-align: center;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.saemail{
+    text-align: center;
+    border: solid black 2px;
+    padding: 10px 10px 10px 10px;
+}
+.maine{
+    background-color: #ffe5ec;
+    height: 100vh;
+    padding-top: 10px;
+}
+.logo{
+    height: 50px;
+    width: 60px;
+    border-radius: 50px;
+    
+}
+.head{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    padding-left: 2px;
+    padding-right: 10px;
+    border-radius: 50px;
+    margin-left: 10px;
+}

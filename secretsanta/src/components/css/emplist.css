@@ -1,0 +1,22 @@
+.eminp{
+    width: 70vw;
+}
+.heado{
+    border: solid black 2px;
+    border-radius: 15px;
+    margin-top: 3vh;
+    width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    padding-top: -20px;
+    padding-bottom: 40px;
+}
+.he{
+    width: 85vw;
+}
+.maino{
+    background-color: #ffe5ec;
+    height: 100vh;
+    padding-top: 10px;
+}
