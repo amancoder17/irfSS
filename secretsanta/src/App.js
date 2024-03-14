@@ -10,6 +10,7 @@ import ShowQr from "./components/ShowQr";
 import Santaform from "./components/Santaform";
 import Empname from "./components/Empname";
 import Records from "./components/Records";
+import Protected from "./Protected";
 function App() {
 
 
@@ -19,16 +20,17 @@ function App() {
       <Routes>
         
 
-      <Route path="/" element={<Login/>} />
-        <Route path="/home" element={<Home/>}/>  
+      <Route path="/" element={<Login/>}/>
+      <Route path="/home" element={<Protected Component={Home} />}/> 
+      <Route path="/emplist" element={<Protected Component={Emplist} />}/>
+        <Route path="/empqr" element={<Protected Component={Qrscan} />}/>
+        <Route path="/updemp" element={< Protected Component={UpdateEmp}  />}/>
+        <Route path="/secretSanta" element={<Protected Component={ShowQr}  />}/>
+        <Route path="/santaform/:id" element={<Protected Component={Santaform} />}/>
+        <Route path="/empname" element={<Protected Component={Empname}  />}/>
+        <Route path="/records" element={<Protected Component={Records} />}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/emplist" element={<Emplist/>}/>
-        <Route path="/empqr" element={<Qrscan/>}/>
-        <Route path="/updemp" element={<UpdateEmp/>}/>
-        <Route path="/secretSanta" element={<ShowQr/>}/>
-        <Route path="/santaform/:id" element={<Santaform/>}/>
-        <Route path="/empname" element={<Empname/>}/>
-        <Route path="/records" element={<Records/>}/>
+        
         
       </Routes>
     </Router>

@@ -43,22 +43,30 @@ app.post('/login',async(req,res)=>{
    const {email,passwordi}= req.body
    const conf= User.findOne({email:email})
    .then((docs)=>{
-             checkUser(passwordi,docs.password)
-             async function checkUser(password,phash) {
-                const match = await bcrypt.compare(password,phash);
-            
-                if(match) {
-                    res.json({
-                        isLoggedIn: match,
-
-                        // Other relevant data for the React component
-                    });
-                }
-                else{
-                    res.json({
-                        isLoggedIn:false,
-                    })
-                }
+               if(docs===null){
+                res.json({
+                    isLoggedIn:false,
+                })
+               }
+               else{
+                checkUser(passwordi,docs.password)
+                async function checkUser(password,phash) {
+                   const match = await bcrypt.compare(password,phash);
+               
+                   if(match) {
+                       res.json({
+                           isLoggedIn: match,
+   
+                           // Other relevant data for the React component
+                       });
+                   }
+                   else{
+                       res.json({
+                           isLoggedIn:false,
+                       })
+                   }
+               }
+           
             }
    })
    

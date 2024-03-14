@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import './css/login.css';
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate= useNavigate();
 
 const [user,setUser]= useState({
   email:"",
@@ -15,7 +17,10 @@ const handlechange= e =>{
   ...user,[name]:value
   })
 }
+
 const login=()=>{
+ 
+
   if(user.email===""||user.passwordi==="")
   {
     toast('Enter Email and Password',{
@@ -29,7 +34,9 @@ const login=()=>{
     .then((res)=>{
       if(res.data.isLoggedIn===true)
       {
-        window.location.replace('/home')
+        localStorage.setItem('log',true)
+        navigate('/home')
+        
         // alert("ok h");
       }
       else if(res.data.isLoggedIn===false){
@@ -68,6 +75,7 @@ const login=()=>{
 
               <div className="btn btn-primary sub" onClick={login}>Submit</div>
               <Toaster />
+
               
             </div>
           </form>
