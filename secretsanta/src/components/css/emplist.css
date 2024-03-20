@@ -12,8 +12,12 @@
     padding-top: -20px;
     padding-bottom: 40px;
 }
+.eml{
+    font-size: 1.8rem;
+}
 .he{
     width: 85vw;
+    font-size: 2.5rem;
 }
 .maino{
     background-color: #ffe5ec;

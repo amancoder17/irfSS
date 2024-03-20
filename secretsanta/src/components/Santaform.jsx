@@ -46,7 +46,11 @@ const Santaform = () => {
           
         }
         else{
-          alert("invalid")
+          toast('Please fill All the Details',{
+            style:{
+              background:'red'
+            }
+          });
         }
         
       }
@@ -54,7 +58,7 @@ const Santaform = () => {
   return (
     <div className='mains'>
       <div className="head">
-                    <h1 className="ms-4">Secret Santa</h1>
+                    <h1 className="ms-4 mt-5">Secret Santa</h1>
                     <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
                 </div>
         <form className="form w-75">

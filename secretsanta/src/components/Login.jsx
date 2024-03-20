@@ -57,17 +57,17 @@ const login=()=>{
     <>
       <div className="maino">
         <div className="head">
-          <h1 className="ms-4">Secret Santa</h1>
+          <h1 className="ms-4 mt-5">Secret Santa</h1>
           <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
         </div>
         <div className="main">
-          <form className="form w-75">
+          <form className="form ">
             <h1 className="loghead">Login</h1>
-            <div className="mb-3 w-100 mx-auto p-2">
+            <div className="mb-3  mx-auto p-2">
               <label for="exampleInputEmail1" className="form-label">Email address</label>
               <input type="email" name="email" value={user.email} onChange={handlechange} className="form-control inpq" placeholder="Enter your Email ID" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
             </div>
-            <div className="mb-3 w-100 mx-auto p-2">
+            <div className="mb-3  mx-auto p-2">
               <label for="exampleInputPassword1" className="form-label">Password</label>
               <input type="password" name="passwordi" className="form-control inpq" value={user.passwordi} onChange={handlechange} placeholder="Enter your Password" id="exampleInputPassword1" required />
             </div>

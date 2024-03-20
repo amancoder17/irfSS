@@ -33,11 +33,12 @@
     margin-left: 10px;
 }
 .card{
-    width: 18rem;
+    width: 27rem;
     height: 75%;
     margin-top: 5%;
     align-items: center;
     text-align: center;
+    font-size: 1.5rem;
 }
 .card-img-top{
     height: 42%;
@@ -45,5 +46,6 @@
     margin-top: 20px;
 }
 .btn{
-    width: 200px;
+    width: 12rem;
+    font-size: 1.5rem;
 }

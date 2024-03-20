@@ -20,41 +20,49 @@
 .namee{
     width:20vw;
     border: solid black 2px;
+    font-size: 2rem;
     padding: 10px 10px 10px 10px;
 }
 .eemail{
     width: 20vw;
+    font-size: 2rem;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
 }
 .emname{
     text-align: center;
+    font-size: 2rem;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
 }
 .ememail{
     text-align: center;
+    font-size: 2rem;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
 }
 .demp{
     width: 20vw;
     border: solid black 2px;
+    font-size: 2rem;
     padding: 10px 10px 10px 10px;
 }
 .delbtn{
     text-align: center;
     border: solid black 2px;
+    font-size: 2rem;
     padding: 10px 10px 10px 10px;
 }
 .uemp{
     width: 20vw;
     border: solid black 2px;
+    font-size: 2rem;
     padding: 10px 10px 10px 10px;
 }
 .upbtn{
     text-align: center;
     border: solid black 2px;
+    font-size: 2rem;
     padding: 10px 10px 10px 10px;
 
 }

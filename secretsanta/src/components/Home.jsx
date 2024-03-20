@@ -4,15 +4,15 @@ import QR from '../components/assets/QR.jpg'
 import emp from '../components/assets/emp.png'
 import rec from '../components/assets/record.png'
 import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Home = () => {
     return (
-        <>
+        <div className="badi">
+        <Navbar/>
+        
             <div className="maino">
-                <div className="head">
-                    <h1 className="ms-4">Secret Santa</h1>
-                    <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
-                </div>
+            
                 <div className="k1 w-75">
 
                     <div className="card">
@@ -49,8 +49,7 @@ const Home = () => {
                 </div>
             </div>
 
-
-        </>
+            </div>
     )
 }
 export default Home;

@@ -64,7 +64,7 @@ const register= ()=>{
     .then(window.location.replace('/'))
   }
   else{
-    toast('Enter Name in Aplha letters only',{
+    toast('Fill all the Details Correctly',{
       style:{
         background:'red'
       }
@@ -79,7 +79,7 @@ const register= ()=>{
     <>
       <div className="maino">
         <div className="head">
-          <h1 className="ms-4">Secret Santa</h1>
+          <h1 className="ms-4 mt-5">Secret Santa</h1>
           <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
         </div>
         <div className="main">

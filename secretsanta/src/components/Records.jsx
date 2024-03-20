@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './css/records.css'
 import axios from 'axios';
+import Navbar from "./Navbar";
 
 const Records = () => {
     const [record,setrecord]=useState([]);
@@ -18,13 +19,9 @@ const Records = () => {
         
     }
   return (
-    
-
+    <>
+      <Navbar/>
     <div className='maine'>
-        <div className="head">
-                    <h1 className="ms-4">Secret Santa</h1>
-                    <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
-                </div>
         <table className='templo'>
   <thead>
   <tbody>
@@ -46,6 +43,7 @@ const Records = () => {
   </thead>  
 </table>
     </div>
+    </>
   )
 }
 

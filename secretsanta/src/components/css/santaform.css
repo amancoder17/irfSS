@@ -4,11 +4,15 @@
     border-radius: 50px;
     
 }
+.inpq{
+    font-size: 2rem;
+}
 .head{
     background-color: white;
     display: flex;
     justify-content: center;
-    width: max-content;
+    width: 26rem;
+    height: 10rem;
     padding-left: 2px;
     padding-right: 10px;
     border-radius: 50px;

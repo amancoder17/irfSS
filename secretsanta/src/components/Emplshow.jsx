@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import '../components/css/emplshow.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Emplshow = () => {
     const[employees,setEmployees]= useState([]);
 
-
+    const navigate= useNavigate();
   const fetchData = async()=>{
     try {
       const response= await axios.get('http://localhost:9002/empl')
@@ -24,22 +25,23 @@ const handleDelete = async(id)=>{
   try {
      await axios.delete(`http://localhost:9002/empl/${id}`)
      .then((response)=>{
+
       console.log(response)
+      
      })
+     .then(window.location.reload(true))
      
   } catch (e) {
     console.error(e);
   }
   
 }
-const handleUpdate = async (id)=>{
+const handleUpdate =  (id)=>{
   try {
-    await axios.update(`http://localhost:9002/empl/${id}`)
-    .then((res)=>{
-      console.log(res);
-    })
+   navigate(`updemp/${id}`)
+    }
     
-  } catch (e) {
+  catch (e) {
     console.error(e);
   }
 }

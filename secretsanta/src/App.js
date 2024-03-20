@@ -24,13 +24,12 @@ function App() {
       <Route path="/home" element={<Protected Component={Home} />}/> 
       <Route path="/emplist" element={<Protected Component={Emplist} />}/>
         <Route path="/empqr" element={<Protected Component={Qrscan} />}/>
-        <Route path="/updemp" element={< Protected Component={UpdateEmp}  />}/>
+        <Route path="/emplist/updemp/:id" element={< Protected Component={UpdateEmp}  />}/>
         <Route path="/secretSanta" element={<Protected Component={ShowQr}  />}/>
         <Route path="/santaform/:id" element={< Santaform />}/>
         <Route path="/empname" element={<Empname/>}/>
         <Route path="/records" element={<Protected Component={Records} />}/>
         <Route path="/register" element={<Register/>}/>
-        
         
       </Routes>
     </Router>

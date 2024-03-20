@@ -1,7 +1,7 @@
 const express= require('express');
 const cors = require('cors')
 const mongoose= require('mongoose');
-
+var cron = require('node-cron');
 const path =require('path')
 const app= express();
 const sendMail= require('./mail');
@@ -76,6 +76,7 @@ app.post('/login',async(req,res)=>{
         console.log(error);
     }    
 })
+const sse=[];
 
 
 app.post('/santasubmit',async(req,res)=>{
@@ -91,10 +92,13 @@ app.post('/santasubmit',async(req,res)=>{
                 {
                     const {email,firstname,lastname}=santassign
                     // console.log(santassign,santanames);
-                    sendMail({santanames,email,firstname,lastname});
+                    
                     res.json({
                         tex:true,
                     })
+                    sse.push({santanames,email,firstname,lastname});
+                    // console.log(sse)
+                    // sendMail({santanames,email,firstname,lastname});
                     // res.send({message:"santa assigned",santassign})
                    
                 }
@@ -113,6 +117,13 @@ app.post('/santasubmit',async(req,res)=>{
     
 })
 
+// cron.schedule('32 23 * * *', () => {
+//     for(let i=0;i<sse.length;i++)
+//     {
+//         sendMail(sse[i].santanames,sse[i].email,sse[i].firstname,sse[i].lastname);
+//     }
+   
+//   });
 
 
 app.get('/empname/:id',async(req,res)=>{
@@ -146,7 +157,9 @@ app.delete('/empl/:id',async(req,res)=>{
 app.patch('/empl/:id',async(req,res)=>{
     try {
         const id=req.params.id;
-        await Emp.findByIdAndUpdate(id);
+        // const {firstname,lastname,email}=req.body
+        await Emp.findByIdAndUpdate(id,req.body);
+        res.send({message:"updated user"})
 
     } catch (e) {
         console.log(e);

@@ -25,6 +25,11 @@ const Empname = () => {
     
   return (
     <div className='Enameb'>
+       <div className="head">
+                    <h1 className="ms-4 mt-5">Secret Santa</h1>
+                    <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
+                </div>
+
         <p>You are Secret Santa of <b>{Ename.firstname} {Ename.lastname} </b> </p>
         
     </div>

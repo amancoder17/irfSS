@@ -2,6 +2,7 @@ import React, {useState } from 'react'
 import axios from 'axios'
 import '../components/css/emplist.css'
 import Emplshow from './Emplshow'
+import Navbar from './Navbar'
 
 const Emplist = () => {
 
@@ -26,11 +27,9 @@ const Emplist = () => {
 
   return (
     <>
+    <Navbar/>
     <div className='maino'>
-    <div className="head">
-                    <h1 className="ms-4">Secret Santa</h1>
-                    <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
-                </div>
+    
     <h5 className='he mx-auto mt-5'>Add Employee</h5>
     <div className='heado'>
   <div className="input-group eminp mx-auto mt-5">

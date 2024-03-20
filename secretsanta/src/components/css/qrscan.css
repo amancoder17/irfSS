@@ -21,30 +21,36 @@
     width:30vw;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
+    font-size: 2rem;
 }
 .eemail{
     width: 30vw;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
+    font-size: 2rem;
 }
 .gqr{
     width: 30vw;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
+    font-size: 2rem;
 
 }
 .emname{
     text-align: center;
     border: solid black 2px;
+    font-size: 2rem;
     padding: 10px 10px 10px 10px;
 }
 .ememail{
     text-align: center;
     border: solid black 2px;
+    font-size: 2rem;
     padding: 10px 10px 10px 10px;
 }
 .emqr{
     text-align: center;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
+    font-size: 1.8rem;
 }

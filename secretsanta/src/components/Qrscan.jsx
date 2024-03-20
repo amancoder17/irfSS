@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './css/qrscan.css'
 
 import axios from 'axios';
+import Navbar from './Navbar';
 const Qrscan = () => {
   const[employees,setEmployees]= useState([]);
 
@@ -27,13 +28,8 @@ const GenerateQR= async(id)=>{
   
   return (
     <>
+    <Navbar/>
     <div className="qrmain">
-
-    <div className="head">
-                    <h1 className="ms-4">Secret Santa</h1>
-                    <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
-                </div>
-        
 <div className='qrcode'>
 <h1 className='qrhead'>Generate QR to become a Secret Santa</h1>
 <table className='templ'>
