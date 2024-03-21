@@ -10,11 +10,6 @@ const UpdateEmp = () => {
   const url=new URL(window.location.href);
     const idi= url.pathname;
     const sidi= idi.slice(16);
-  // const [emp,setEmp]= useState({
-  //   firstname:"",
-  //   lastname:"",
-  //   email:""
-  // })
   useEffect(()=>{
     fetchName(sidi)
   },[])

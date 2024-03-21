@@ -3,9 +3,10 @@ import './css/qrscan.css'
 
 import axios from 'axios';
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 const Qrscan = () => {
   const[employees,setEmployees]= useState([]);
-
+  const navigate=useNavigate()
 useEffect(()=>{
     fetchData()
   },[])
@@ -22,7 +23,9 @@ const fetchData = async()=>{
     }
 }
 const GenerateQR= async(id)=>{
-  window.location.href=`/secretSanta?Data=${id}`;
+  // window.location.href=`/secretSanta?Data=${id}`;
+  navigate(`/secretSanta?Data=${id}`)
+
 
 }
   
