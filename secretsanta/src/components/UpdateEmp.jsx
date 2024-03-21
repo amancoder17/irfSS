@@ -20,6 +20,7 @@ const UpdateEmp = () => {
     })
   }
   const update=(id)=>{
+
     const {firstname,lastname,email}=emp
     axios.patch(`http://localhost:9002/empl/${id}`,emp)
     .then(res=> console.log(res))
