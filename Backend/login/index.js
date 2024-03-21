@@ -96,9 +96,9 @@ app.post('/santasubmit',async(req,res)=>{
                     res.json({
                         tex:true,
                     })
-                    sse.push({santanames,email,firstname,lastname});
+                    // sse.push({santanames,email,firstname,lastname});
                     // console.log(sse)
-                    // sendMail({santanames,email,firstname,lastname});
+                    sendMail({santanames,email,firstname,lastname});
                     // res.send({message:"santa assigned",santassign})
                    
                 }
