@@ -3,8 +3,11 @@ import axios from 'axios'
 import '../components/css/emplist.css'
 import Emplshow from './Emplshow'
 import Navbar from './Navbar'
+import { useNavigate } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast';
 
 const Emplist = () => {
+  const navigate= useNavigate();
 
   const [emp,setEmp]= useState({
     firstname:"",
@@ -20,9 +23,32 @@ const Emplist = () => {
 
   const add=()=>{
     const {firstname,lastname,email}=emp
-    axios.post("http://localhost:9002/emplist",emp)
-    .then(res=> console.log(res))
-    window.location.reload(true)
+    if(firstname && lastname && email)
+    {
+      axios.post("http://localhost:9002/emplist",emp)
+      .then((res)=>{
+        if(res.data.ans===false)
+        {
+          navigate(0)
+        }
+        else
+        {
+          toast('Employee Already Added',{
+            style:{
+              background:'red'
+            }
+          });
+        }
+      } )
+    }
+    else{
+      toast('Please fill All the Details',{
+        style:{
+          background:'red'
+        }
+      });
+    }
+
   }
 
   return (
@@ -41,9 +67,9 @@ const Emplist = () => {
     </div>
     </div>
     <Emplshow/>
+    <Toaster />
     </div>
     </>
   )
-}
-
+  }
 export default Emplist;

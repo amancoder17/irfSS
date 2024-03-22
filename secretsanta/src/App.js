@@ -11,6 +11,7 @@ import Santaform from "./components/Santaform";
 import Empname from "./components/Empname";
 import Records from "./components/Records";
 import Protected from "./Protected";
+import About from "./components/About";
 function App() {
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/santaform/:id" element={< Santaform />}/>
         <Route path="/empname" element={<Empname/>}/>
         <Route path="/records" element={<Protected Component={Records} />}/>
+        <Route path="/about" element={<Protected Component={About} />}/>
         <Route path="/register" element={<Register/>}/>
         
       </Routes>

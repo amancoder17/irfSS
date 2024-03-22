@@ -17,21 +17,21 @@ app.use(cors());
 //  });
 
 //connecting Database
-mongoose.connect('mongodb+srv://amanpanwarcs2019:9119Aman@cluster0.szdvs6c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
-.then(()=>{
-    console.log('DB connected');
-})
-.catch((err)=>{
-    console.log(err);
-})
-
-// mongoose.connect('mongodb://127.0.0.1:27017/secrets')
+// mongoose.connect('mongodb+srv://amanpanwarcs2019:9119Aman@cluster0.szdvs6c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 // .then(()=>{
 //     console.log('DB connected');
 // })
 // .catch((err)=>{
 //     console.log(err);
 // })
+
+mongoose.connect('mongodb://127.0.0.1:27017/secrets')
+.then(()=>{
+    console.log('DB connected');
+})
+.catch((err)=>{
+    console.log(err);
+})
 
 const User = require('./models/user');
 const Emp= require('./models/emp');
@@ -184,19 +184,39 @@ app.post('/register',async(req,res)=>{
 });
 
  
-app.post('/emplist',(req,res)=>{
+app.post('/emplist',async(req,res)=>{
+
     const {firstname,lastname,email}=req.body
-    const emp= new Emp({
-        firstname,
-        lastname,
-        email,
-        santaname:"",
-        santaemail:""
+    const fin= await Emp.findOne({email:email})
+    .then((final)=>{
+        if(final===null){
+
+
+
+            const emp= new Emp({
+                firstname,
+                lastname,
+                email,
+                santaname:"",
+                santaemail:""
+            })
+            emp.save()
+            .then(
+            res.json({
+                ans:false
+            }))
+
+
+
+
+        }
+        else{
+            res.json({
+                ans:true
+            })
+        }
+
     })
-    emp.save()
-    .then(
-        res.send({message:"Added"})
-    )
 })
 
 // console.log(process.env);
