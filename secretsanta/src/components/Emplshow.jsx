@@ -54,24 +54,24 @@ useEffect(()=>{
 
 
   return (
-    <div className='ms'>
-        <div className='ect'>
-        <table className='templ'>
+    <div className='mss'>
+        <div className='ectt'>
+        <table className='templl'>
   <thead>
   <tbody>
     <tr className='text-center'>
-      <th className='namee'>Name</th>
-      <th className='eemail'>Email</th>
-      <th className='demp'>Delete Employee</th>
-      <th className='uemp'>Update Employee</th>
+      <th className='shname'>Name</th>
+      <th className='eemaill'>Email</th>
+      <th className='dempl'>Delete Employee</th>
+      <th className='uempl'>Update Employee</th>
     </tr>
     {
       employees.map((employee)=>
       <tr key={employee.id} >
-        <td className='emname'>{employee.firstname} {employee.lastname}</td>
-        <td className='ememail'> {employee.email}</td>
-        <td className='delbtn'><button  onClick={()=>handleDelete(employee._id)}>Delete</button></td>
-        <td className='upbtn'><button onClick={()=>handleUpdate(employee._id)}>Update</button></td>
+        <td className='oemname'>{employee.firstname} {employee.lastname}</td>
+        <td className='oememail'> {employee.email}</td>
+        <td className='odelbtn'><button className='btn btn7' onClick={()=>handleDelete(employee._id)}>Delete</button></td>
+        <td className='oupbtn'><button className='btn btn7' onClick={()=>handleUpdate(employee._id)}>Update</button></td>
       </tr>)
     }
     </tbody>

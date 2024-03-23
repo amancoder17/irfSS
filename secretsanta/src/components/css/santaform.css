@@ -1,25 +1,68 @@
-.logo{
-    height: 50px;
-    width: 60px;
-    border-radius: 50px;
-    
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: pink;
+    /* font-size: 400; */
 }
-.inpq{
-    font-size: 2rem;
+.ss{
+    font-weight: 600;
 }
-.head{
+.simg{
+    width: 250px;
+}
+
+/*------------ Login container ------------*/
+
+.box-area{
+    width: 930px;
+}
+.btn0:hover{
+    border: solid black 1px;
+    color: purple;
+    background-color: wheat;
+    box-shadow: 2px 2px 6px 6px #8a6a77;
+    font-weight: 600;
+}
+/*------------ Right box ------------*/
+
+.right-box{
+    padding: 40px 30px 40px 40px;
+
+}
+.left-box{
     background-color: white;
-    display: flex;
-    justify-content: center;
-    width: 26rem;
-    height: 10rem;
-    padding-left: 2px;
-    padding-right: 10px;
-    border-radius: 50px;
-    margin-left: 10px;
 }
-.mains{
-    background-color: #ffe5ec;
-    height: 100vh;
-    padding-top: 10px;
+
+/*------------ Custom Placeholder ------------*/
+
+::placeholder{
+    font-size: 16px;
+}
+
+.rounded-4{
+    border-radius: 20px;
+}
+.rounded-5{
+    border-radius: 30px;
+}
+.btn0{
+    
+    background-color: pink;
+    border-color: purple;
+}
+
+
+/*------------ For small screens------------*/
+
+@media only screen and (max-width: 768px){
+
+     .box-area{
+        margin: 0 10px;
+
+     }
+     .right-box{
+        padding: 20px;
+     }
+
 }

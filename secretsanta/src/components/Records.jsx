@@ -21,22 +21,22 @@ const Records = () => {
   return (
     <>
       <Navbar/>
-    <div className='maine'>
-        <table className='templo'>
+    <div className='rmaine'>
+        <table className='rtemplo'>
   <thead>
   <tbody>
     <tr className='text-center'>
-      <th className='namee'>Employee Name</th>
-      <th className='ename'>Secret Santa Name</th>
-      <th className='semail'>Secret Santa Email</th>
+      <th className='rnamee'>Employee Name</th>
+      <th className='rename'>Secret Santa Name</th>
+      <th className='rsemail'>Secret Santa Email</th>
       
     </tr>
     {
       record.map((employee)=>
       <tr key={employee.id} >
-        <td className='emname'>{employee.firstname} {employee.lastname}  {` -->`} </td>
-        <td className='ememail'> {employee.santaname}</td>
-        <td className='saemail'> {employee.santaemail}</td>
+        <td className='remname'>{employee.firstname} {employee.lastname}  {` -->`} </td>
+        <td className='rememail'> {employee.santaname}</td>
+        <td className='rsaemail'> {employee.santaemail}</td>
       </tr>)
     }
     </tbody>

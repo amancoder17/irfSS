@@ -20,7 +20,7 @@ const Home = () => {
                         <div className="card-body">
                             <p className="card-text">Generate a QR to become a Secret Santa</p>
                             <Link to='/empqr'>
-                            <a href="#" className="btn btn-primary">Generate QR</a>
+                            <a href="#" className="btn  ">Generate QR</a>
                             </Link>
                             
                         </div>
@@ -28,9 +28,9 @@ const Home = () => {
                     <div className="card">
                         <img src={emp} className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <p className="card-text">View/Add/Delete/Update Employee List</p>
+                            <p className="card-text d-flex">View/ Add/ Delete/ Update Employee List</p>
                             <Link to='/emplist'>
-                            <a href="#" className="btn btn-primary">Go</a>
+                            <a href="#" className="btn  ">Go</a>
                             </Link>
                             
                         </div>
@@ -41,7 +41,7 @@ const Home = () => {
                             <p className="card-text">Records of secret santa</p>
                             <br />
                             <Link to='/records'>
-                            <a href="#" className="btn btn-primary">View</a>
+                            <a href="#" className="btn ">View</a>
                             </Link>
                             
                         </div>

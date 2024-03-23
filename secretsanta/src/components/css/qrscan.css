@@ -1,14 +1,17 @@
 .qrmain{
     /* background-color: #c01b47; */
-    background-color: #ffe5ec;
+    background-color: pink;
     /* margin-left: 20px; */
     width: 100vw;
     height: 100vh;
     padding-top: 20px;
+    justify-content: center;
 
 }
 .qrcode{
-    margin-left: 20px;
+    /* border: solid black 2px; */
+    display: flex;
+    justify-content: center;
 }
 .qrhead{
     text-align: center;
@@ -17,40 +20,53 @@
 .templ{
     margin-top: 5vh;
 }
-.namee{
+.qrname{
     width:30vw;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
-.eemail{
+.qremail{
     width: 30vw;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
-.gqr{
+.qrg{
     width: 30vw;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 
 }
-.emname{
+.qremname{
     text-align: center;
     border: solid black 2px;
-    font-size: 2rem;
+    font-size: 1.2rem;
     padding: 10px 10px 10px 10px;
 }
-.ememail{
+.qrememail{
     text-align: center;
     border: solid black 2px;
-    font-size: 2rem;
+    font-size: 1.2rem;
     padding: 10px 10px 10px 10px;
 }
-.emqr{
+.qremqr{
     text-align: center;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
+}
+.btn3{
+    width: 12rem;
+    font-size: 1rem;
+    border: black solid 1px;
+    background-color: rgb(247, 147, 163);
+}
+.btn3:hover{
+    border: solid black 1px;
+    color: purple;
+    background-color: wheat;
+    box-shadow: 2px 2px 6px 6px #8a6a77;
+    font-weight: 600;
 }

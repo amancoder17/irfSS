@@ -16,8 +16,8 @@ Continuous improvements and enhancements are planned to ensure ongoing success a
     </p>
     </div>
     <div className='fotter'>
-        <h2>Made By Foxians for Foxians with <AiFillHeart className='dil'/> 
-      </h2>
+        <h5>Made By Foxians: (Aman, Irfan and Aditi), for all Foxians with <AiFillHeart className='dil'/> 
+      </h5>
     </div>
     </>
    

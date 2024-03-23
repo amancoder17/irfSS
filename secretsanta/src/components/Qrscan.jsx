@@ -33,22 +33,22 @@ const GenerateQR= async(id)=>{
     <>
     <Navbar/>
     <div className="qrmain">
+    <h1 className='qrhead'>Generate QR to become a Secret Santa</h1>
 <div className='qrcode'>
-<h1 className='qrhead'>Generate QR to become a Secret Santa</h1>
 <table className='templ'>
   <thead>
   <tbody>
     <tr className='text-center'>
-      <th className='namee'>Name</th>
-      <th className='eemail'>Email</th>
-      <th className='gqr'>Generate QR</th>
+      <th className='qrname'>Name</th>
+      <th className='qremail'>Email</th>
+      <th className='qrg'>Generate QR</th>
     </tr>
     {
       employees.map((employee)=>
       <tr key={employee.id} >
-        <td className='emname'>{employee.firstname} {employee.lastname}</td>
-        <td className='ememail'> {employee.email}</td>
-        <td className='emqr'><button onClick={()=>GenerateQR(employee._id)}>Generate QR</button></td>
+        <td className='qremname'>{employee.firstname} {employee.lastname}</td>
+        <td className='qrememail'> {employee.email}</td>
+        <td className='qremqr'><button className='btn btn3' onClick={()=>GenerateQR(employee._id)}>Generate QR</button></td>
       </tr>)
     }
     </tbody>

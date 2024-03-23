@@ -1,51 +1,50 @@
-.templo{
+.rtemplo{
     width: 60vw;
     margin-left: auto;
     margin-right: auto;
-    border: solid black 2px;
     margin-top: 10vh;
     
 }
-.namee{
+
+.rnamee{
     width:20vw;
-    border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 2rem;
-}
-.ename{
-    width:20vw;
-    border: solid black 2px;
-    padding: 10px 10px 10px 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 
-.semail{
+.rename{
     width:20vw;
-    border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
-.emname{
+
+.rsemail{
+    width:20vw;
+    padding: 10px 10px 10px 10px;
+    font-size: 1.2rem;
+}
+
+.remname{
     text-align: center;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
-.ememail{
+
+.rememail{
     text-align: center;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
-.saemail{
+
+.rsaemail{
     text-align: center;
     border: solid black 2px;
     padding: 10px 10px 10px 10px;
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
-.maine{
-    background-color: #ffe5ec;
+.rmaine{
     height: 100vh;
     padding-top: 10px;
-    font-size: 2rem;
 }

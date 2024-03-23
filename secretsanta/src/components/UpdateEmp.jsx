@@ -50,7 +50,7 @@ const UpdateEmp = () => {
     <label className='ms-3' >Email</label><br />
     <input type="email" className="form-control eml" name='email' id="exampleFormControlInput1" value={Ename.email} onChange={handlechange} placeholder="Email"/>
     <br />
-    <button className="btn btn-primary uto" onClick={()=>update(sidi)}>Update</button>
+    <button className="btn btn-primary uto mb-3" onClick={()=>update(sidi)}>Update</button>
 
     </div>
     </div>

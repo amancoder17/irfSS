@@ -26,7 +26,7 @@ const Empname = () => {
   return (
     <div className='Enameb'>
        <div className="head">
-                    <h1 className="ms-4 mt-5">Secret Santa</h1>
+                    <h4 className="ms-4 mt-4">Secret Santa</h4>
                     <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
                 </div>
 

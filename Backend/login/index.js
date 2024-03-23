@@ -10,11 +10,7 @@ const PORT = process.env.PORT || 9002;
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors());
- 
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.get('/*', function (req, res) {
-//    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-//  });
+
 
 //connecting Database
 // mongoose.connect('mongodb+srv://amanpanwarcs2019:9119Aman@cluster0.szdvs6c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')

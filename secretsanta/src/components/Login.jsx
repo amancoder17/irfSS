@@ -25,7 +25,8 @@ const login=()=>{
   {
     toast('Enter Email and Password',{
       style:{
-        background:'red'
+        background:'red',
+        color:"white"
       }
     });
   }
@@ -42,7 +43,9 @@ const login=()=>{
       else if(res.data.isLoggedIn===false){
         toast('Wrong Email or Password',{
           style:{
-            background:'red'
+            background:'red',
+            color:"white",
+            
           }
         })
       }
@@ -54,34 +57,46 @@ const login=()=>{
 }
 
   return (
-    <>
-      <div className="maino">
-        <div className="head">
-          <h1 className="ms-4 mt-5">Secret Santa</h1>
-          <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
-        </div>
-        <div className="main">
-          <form className="form ">
-            <h1 className="loghead">Login</h1>
-            <div className="mb-3  mx-auto p-2">
-              <label for="exampleInputEmail1" className="form-label">Email address</label>
-              <input type="email" name="email" value={user.email} onChange={handlechange} className="form-control inpq" placeholder="Enter your Email ID" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
+      
+      <body>
+       <div className="container d-flex justify-content-center align-items-center min-vh-100">
+  
+      
+  
+         <div className="row border rounded-5 p-3 bg-white shadow box-area">
+  
+  
+         <div className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
+             <div className="featured-image mb-3">
+              <img src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg"alt="santaimg" className="img-fluid simg"/>
+             </div>
+             <p className="text-black fs-2 ss">Secret Santa</p>
+         </div> 
+  
+      
+          
+         <div className="col-md-6 right-box">
+            <div className="row align-items-center">
+                  <div className="header-text mb-4">
+                       <h2>Login</h2>
+                  </div>
+                  <div className="input-group mb-3">
+                      <input type="email" name="email" value={user.email} onChange={handlechange} id="email" className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required/>
+                  </div>
+                  <div className="input-group mb-3">
+                      <input type="password" name="passwordi" value={user.passwordi} onChange={handlechange} className="form-control form-control-lg bg-light fs-6" placeholder="Password" required/>
+                  </div>
+                  <div className="input-group mb-3 bro">
+                      <button className="text-black btn btn-lg btn-primary w-100 fs-6" onClick={login}>Login</button>
+                  </div>
+                  <Toaster />
             </div>
-            <div className="mb-3  mx-auto p-2">
-              <label for="exampleInputPassword1" className="form-label">Password</label>
-              <input type="password" name="passwordi" className="form-control inpq" value={user.passwordi} onChange={handlechange} placeholder="Enter your Password" id="exampleInputPassword1" required />
-            </div>
-            <div className="mb-3 mx-auto p-2 sbtn">
-
-              <div className="btn btn-primary sub" onClick={login}>Submit</div>
-              <Toaster />
-
-              
-            </div>
-          </form>
+         </div> 
+  
         </div>
       </div>
-    </>
+  
+  </body>
   )
 }
 

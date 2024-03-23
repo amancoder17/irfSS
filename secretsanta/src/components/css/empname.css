@@ -5,16 +5,21 @@
     border: solid 2px black;
     width: 80vw;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 .head{
     background-color: white;
     display: flex;
     justify-content: center;
-    width: 26rem;
-    height: 10rem;
+    width: 18rem;
+    height: 5rem;
+    margin-top: 10px;
     padding-left: 2px;
     padding-right: 10px;
     border-radius: 50px;
     margin-left: 10px;
+}
+.logo{
+    height: 50px;
+    margin-top: 10px;
 }

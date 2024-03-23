@@ -38,7 +38,8 @@ const Santaform = () => {
             {
               toast('Form Already Submitted',{
                 style:{
-                  background:'red'
+                  background:'red',
+                  color:'white'
                 }
               });
             }
@@ -48,7 +49,8 @@ const Santaform = () => {
         else{
           toast('Please fill All the Details',{
             style:{
-              background:'red'
+              background:'red',
+              color:'white'
             }
           });
         }
@@ -56,29 +58,49 @@ const Santaform = () => {
       }
 
   return (
-    <div className='mains'>
-      <div className="head">
-                    <h1 className="ms-4 mt-5">Secret Santa</h1>
-                    <img className="logo" src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg" alt="" />
-                </div>
-        <form className="form w-75">
-            <div className="mb-3 w-100 mx-auto p-2">
-              <label for="exampleInputEmail1" className="form-label">Email address</label>
-              <input type="email" name="santaemails" value={Santa.email} onChange={handlechange} className="form-control inpq" placeholder="Enter your Email ID" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
+   
+
+
+
+          <body>
+       <div className="container d-flex justify-content-center align-items-center min-vh-100">
+  
+      
+  
+         <div className="row border rounded-5 p-3 bg-white shadow box-area">
+  
+  
+         <div className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box">
+             <div className="featured-image mb-3">
+              <img src="https://www.shutterstock.com/image-vector/santa-hat-600nw-209018503.jpg"alt="santaimg" className="img-fluid simg"/>
+             </div>
+             <p className="text-black fs-2 ss">Secret Santa</p>
+         </div> 
+  
+      
+          
+         <div className="col-md-6 right-box">
+            <div className="row align-items-center">
+                  <div className="header-text mb-4">
+                       <h2>Jingle Bells..Jingle Bells</h2>
+                  </div>
+                  <div className="input-group mb-3">
+                      <input type="email" name="santaemails" value={Santa.email} onChange={handlechange} id="email" className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required/>
+                  </div>
+                  <div className="input-group mb-3">
+                      <input type="text" name="santanames" value={Santa.name} onChange={handlechange} className="form-control form-control-lg bg-light fs-6" placeholder="Name" required/>
+                  </div>
+                  <div className="input-group mb-3 bro">
+                      <button className="text-black btn btn0 btn-lg btn-primary w-100 fs-6" onClick={submit}>Submit</button>
+                  </div>
+                  <Toaster />
             </div>
-            <div className="mb-3 w-100 mx-auto p-2">
-              <label className="form-label">Name</label>
-              <input type="text" name="santanames" className="form-control inpq" value={Santa.name} onChange={handlechange} placeholder="Enter your name" id="examplename" required/>
-            </div>
-            <div className="mb-3 mx-auto p-2 sbtn">
-                <div className="btn btn-primary sub" onClick={submit} >Submit</div>
-                <Toaster />
-                
-              
-              
-            </div>
-          </form>
-    </div>
+         </div> 
+  
+        </div>
+      </div>
+  
+  </body>
   )
 }
 

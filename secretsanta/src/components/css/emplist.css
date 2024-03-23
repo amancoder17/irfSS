@@ -1,7 +1,7 @@
 .eminp{
     width: 70vw;
 }
-.heado{
+.listmain{
     border: solid black 2px;
     border-radius: 15px;
     margin-top: 3vh;
@@ -12,16 +12,29 @@
     padding-top: -20px;
     padding-bottom: 40px;
 }
-.eml{
-    font-size: 1.8rem;
+.emll{
+    font-size: 1.2rem;
 }
 .he{
     width: 85vw;
-    font-size: 2.5rem;
+    /* font-size: 1rem; */
 }
-.maino{
-    background-color: #ffe5ec;
+.mainoo{
     height: 100vh;
     padding-top: 10px;
-    font-size: 2rem;
+    font-size: 1rem;
+}
+
+.btn4{
+    width: 12rem;
+    font-size: 1rem;
+    border: black solid 1px;
+    background-color: rgb(247, 147, 163);
+}
+.btn4:hover{
+    border: solid black 1px;
+    color: purple;
+    background-color: wheat;
+    box-shadow: 2px 2px 6px 6px #8a6a77;
+    font-weight: 600;
 }

@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import axios from 'axios'
-import '../components/css/emplist.css'
+import './css/emplist.css'
 import Emplshow from './Emplshow'
 import Navbar from './Navbar'
 import { useNavigate } from 'react-router-dom'
@@ -35,7 +35,8 @@ const Emplist = () => {
         {
           toast('Employee Already Added',{
             style:{
-              background:'red'
+              background:'red',
+              color:'white'
             }
           });
         }
@@ -44,7 +45,8 @@ const Emplist = () => {
     else{
       toast('Please fill All the Details',{
         style:{
-          background:'red'
+          background:'red',
+          color:'white'
         }
       });
     }
@@ -54,16 +56,16 @@ const Emplist = () => {
   return (
     <>
     <Navbar/>
-    <div className='maino'>
+    <div className='listmai'>
     
-    <h5 className='he mx-auto mt-5'>Add Employee</h5>
-    <div className='heado'>
+    <h4 className='he mx-auto mt-5'>Add Employee</h4>
+    <div className='listmain'>
   <div className="input-group eminp mx-auto mt-5">
     
-  <input  type="text" aria-label="First name" name='firstname' className="form-control eml" value={emp.firstname} onChange={handlechange} placeholder='First Name'/>
-  <input  type="text" aria-label="Last name" name='lastname' className="form-control eml" value={emp.lastname} onChange={handlechange} placeholder='Last Name'/>
-  <input type="email" className="form-control ms-5 eml" name='email' id="exampleFormControlInput1" value={emp.email} onChange={handlechange} placeholder="Email"/>
-  <a href="#" className="btn btn-primary ms-3" onClick={add}>ADD</a>
+  <input  type="text" aria-label="First name" name='firstname' className="form-control emll" value={emp.firstname} onChange={handlechange} placeholder='First Name'required/>
+  <input  type="text" aria-label="Last name" name='lastname' className="form-control emll ms-2" value={emp.lastname} onChange={handlechange} placeholder='Last Name'required/>
+  <input type="email" className="form-control ms-5 emll" name='email' id="exampleFormControlInput1" value={emp.email} onChange={handlechange} placeholder="Email" required/>
+  <a href="#" className="btn btn4 ms-3" onClick={add}>ADD</a>
     </div>
     </div>
     <Emplshow/>
