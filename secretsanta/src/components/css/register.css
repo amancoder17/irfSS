@@ -13,7 +13,12 @@ body{
 }
 
 /*------------ Login container ------------*/
-
+#oootp{
+    display: none;
+}
+#rgbtn{
+    display: none;
+}
 .box-area{
     width: 930px;
 }

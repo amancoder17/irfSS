@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './css/login.css';
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import validator from 'validator'
 import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate= useNavigate();
@@ -17,6 +18,40 @@ const handlechange= e =>{
   ...user,[name]:value
   })
 }
+
+const forgot=()=>{
+  if(user.email==="")
+  {
+    toast('Please Enter Email',{
+      style:{
+        background:'red',
+        color:"white"
+      }
+    });
+  }
+  const valemail=validator.isEmail(user.email)
+  if(valemail===true)
+  {
+    const femail=user.email
+    const arr={femail}
+   axios.post("http://localhost:9002/forgot",arr)
+  //  .then((res)=>{
+
+  //  }) 
+  }
+  else{
+    toast('Please Enter Valid Email',{
+      style:{
+        background:'red',
+        color:"white"
+      }
+    });
+
+  }
+  
+
+}
+
 
 const login=()=>{
  
@@ -88,7 +123,8 @@ const login=()=>{
                   </div>
                   <div className="input-group mb-3 bro">
                       <button className="text-black btn btn-lg btn-primary w-100 fs-6" onClick={login}>Login</button>
-                  </div>
+                  </div> <br />
+                  <a className="text-center" id="forget" onClick={forgot}>Forget Password</a>
                   <Toaster />
             </div>
          </div> 

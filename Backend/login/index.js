@@ -5,6 +5,7 @@ var cron = require('node-cron');
 const path =require('path')
 const app= express();
 const sendMail= require('./mail');
+const sendOtpMail=require('./otpmail')
 const bcrypt= require('bcrypt');
 const PORT = process.env.PORT || 9002;
 app.use(express.json())
@@ -179,7 +180,28 @@ app.post('/register',async(req,res)=>{
     }    
 });
 
- 
+app.post('/otpmail',(req,res)=>{
+    const {otp_val,emu}=req.body
+    if(otp_val&&emu){
+        sendOtpMail({otp_val,emu})
+        res.send({message:"OTP sent"})
+    }
+    else
+    {
+        res.send({message:"Unable to sent OTP"})
+    }
+    
+
+})
+
+app.post('/forgot',async(req,res)=>{
+    const {femail}=req.body
+    const milgya = await User.findOne({email:femail})
+    .then((ans)=>{
+        
+    })
+})
+
 app.post('/emplist',async(req,res)=>{
 
     const {firstname,lastname,email}=req.body

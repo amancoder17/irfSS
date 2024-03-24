@@ -11,6 +11,9 @@ body{
 .simg{
     width: 250px;
 }
+#forget:hover{
+    cursor: pointer;
+}
 
 /*------------ Login container ------------*/
 
