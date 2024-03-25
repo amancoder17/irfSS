@@ -14,7 +14,7 @@ async function sendOtpMail(formData)
          from: 'amankeenable@gmail.com',
          to:formData.emu,
          subject:'Secret Santa OTP',
-         text:`Your OTP for Secret Santa Registration is ${formData.otp_val}`,
+         text:`Your OTP for Secret Santa is ${formData.otp_val}`,
      }
  
      try {

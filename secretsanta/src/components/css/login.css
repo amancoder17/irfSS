@@ -11,10 +11,22 @@ body{
 .simg{
     width: 250px;
 }
+#psinput{
+    display: none;
+}
+#cpbtn{
+    display: none;
+}
 #forget:hover{
     cursor: pointer;
 }
 
+#forgetdiv{
+    display: none;
+}
+#logoi:hover{
+    cursor: pointer;
+}
 /*------------ Login container ------------*/
 
 .box-area{
