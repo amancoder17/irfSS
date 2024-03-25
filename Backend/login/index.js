@@ -120,7 +120,7 @@ app.post('/santasubmit', async (req, res) => {
 
 })
 
-// cron.schedule('32 23 * * *', () => {
+// cron.schedule('59 01 * * *', () => {
 //     for(let i=0;i<sse.length;i++)
 //     {
 //         sendMail(sse[i].santanames,sse[i].email,sse[i].firstname,sse[i].lastname);

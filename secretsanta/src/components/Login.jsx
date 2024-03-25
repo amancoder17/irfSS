@@ -197,7 +197,7 @@ const Login = () => {
               <div className="input-group mb-3 bro">
                 <button className="text-black btn btn-lg btn-primary w-100 fs-6" onClick={login}>Login</button>
               </div> <br />
-              <a className="text-center" id="forget" onClick={forgot}>Forget Password</a>
+              <a className="text-center" id="forget" onClick={forgot}>Forgotten password?</a>
 
 
             </div>
