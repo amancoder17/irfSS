@@ -80,31 +80,41 @@ app.post('/santasubmit', async (req, res) => {
     // console.log(santaemails,santanames)
     const check = await Emp.findById(ids)
     const { santaname, santaemail } = check
-    if (santaname === "" && santaemail === "") {
-        const santassign = await Emp.findByIdAndUpdate(ids, { santaname: santanames, santaemail: santaemails })
-            .then(santassign => {
-                if (santassign) {
-                    const { email, firstname, lastname } = santassign
-                    // console.log(santassign,santanames);
-
-                    res.json({
-                        tex: true,
-                    })
-                    // sse.push({santanames,email,firstname,lastname});
-                    // console.log(sse)
-                    sendMail({ santanames, email, firstname, lastname });
-                    // res.send({message:"santa assigned",santassign})
-
-                }
-                else {
-                    res.send({ message: "Wrong subbmission" })
-                }
-            })
+    if (santaemails == check.email) {
+        res.json({
+            submit: false
+        })
     }
     else {
-        res.json({
-            tex: false,
-        })
+
+        if (santaname === "" && santaemail === "") {
+
+            const santassign = await Emp.findByIdAndUpdate(ids, { santaname: santanames, santaemail: santaemails })
+                .then(santassign => {
+                    if (santassign) {
+                        const { email, firstname, lastname } = santassign
+                        // console.log(santassign,santanames);
+
+                        res.json({
+                            tex: true,
+                        })
+                        // sse.push({santanames,email,firstname,lastname});
+                        // console.log(sse)
+                        sendMail({ santanames, email, firstname, lastname });
+                        // res.send({message:"santa assigned",santassign})
+
+                    }
+                    else {
+                        res.send({ message: "Wrong subbmission" })
+                    }
+                })
+        }
+        else {
+            res.json({
+                tex: false,
+            })
+        }
+
     }
 
 
@@ -214,15 +224,15 @@ app.post('/resetotpmail', async (req, res) => {
 
 
 })
-app.post('/reset',async(req,res)=>{
-    const {email,passwordi}=req.body
+app.post('/reset', async (req, res) => {
+    const { email, passwordi } = req.body
     const saltRound = 10;
     const hashpass = await bcrypt.hash(passwordi, saltRound);
-    const badla= await User.findOneAndUpdate({email:email},{password:hashpass})
-    .then((chabi)=>{
-        res.send({message:"password Updated"})
+    const badla = await User.findOneAndUpdate({ email: email }, { password: hashpass })
+        .then((chabi) => {
+            res.send({ message: "password Updated" })
 
-    })
+        })
 })
 
 app.post('/emplist', async (req, res) => {

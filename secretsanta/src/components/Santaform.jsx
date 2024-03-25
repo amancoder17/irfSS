@@ -31,18 +31,30 @@ const Santaform = () => {
         {
           axios.post(`http://localhost:9002/santasubmit`,Santa)
           .then((res)=>{
-            if(res.data.tex===true){
-              window.location.href=`/empname?Data=${sidi}`;
-            }
-            else
+            if(res.data.submit===false)
             {
-              toast('Form Already Submitted',{
+              toast('Reshuffle the QR',{
                 style:{
-                  background:'red',
-                  color:'white'
+                  background:'yellow'
                 }
               });
             }
+            else{
+              if(res.data.tex===true){
+                window.location.href=`/empname?Data=${sidi}`;
+              }
+              else
+              {
+                toast('Form Already Submitted',{
+                  style:{
+                    background:'red',
+                    color:'white'
+                  }
+                });
+              }
+
+            }
+           
           } )
           
         }
