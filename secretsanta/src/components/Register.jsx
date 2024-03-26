@@ -48,7 +48,7 @@ const handlechangepass=(e)=>{
     setUser({
     ...user,[name]:value
     })
-  if (new_pass.length<6) {
+  if (new_pass.length<7) {
     setpass("Please, enter a valid Password of minimum length 7");
   } else {
     setpass("");
@@ -72,8 +72,9 @@ const otp=()=>{
    let otp_val=Math.floor(Math.random()*10000);
    setOtp(otp_val)
    const emu=user.email;
+   const {name,password}=user
    const valemail=validator.isEmail(emu)
-   if(valemail===true){
+   if(valemail===true && password.length>6 && name!=""){
     const cred = {otp_val,emu}
     document.getElementById('oootp').style.display = 'block';
     document.getElementById('oootpbtn').style.display='none';
@@ -89,7 +90,7 @@ const otp=()=>{
    })
    }
    else{
-    toast('Enter your Email',{
+    toast('Enter your Details Correctly',{
       style:{
         background:'red',
         color:'white'
@@ -107,6 +108,7 @@ const register= ()=>{
     axios.post("http://localhost:9002/register",user)
     .then(res=> console.log(res))
     .then(navigate('/'))
+    
   }
   else{
     toast('Fill all the Details Correctly',{

@@ -29,7 +29,7 @@ const Login = () => {
     setUser({
       ...user, [name]: value
     })
-    if (new_pass.length < 6) {
+    if (new_pass.length < 7) {
       setpass("Please, enter a valid Password of minimum length 7");
     } else {
       setpass("");
