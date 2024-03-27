@@ -13,7 +13,6 @@ const Santaform = () => {
 
 
     const [Santa,setSanta]= useState({
-        santaname:"",
         santaemail:"",
         ids:""
 
@@ -26,8 +25,8 @@ const Santaform = () => {
       }
 
       const submit= ()=>{
-        const {santanames,santaemails,ids}=Santa
-        if(santanames && santaemails)
+        const {santaemails,ids}=Santa
+        if(santaemails)
         {
           axios.post(`http://localhost:9002/santasubmit`,Santa)
           .then((res)=>{
@@ -42,6 +41,15 @@ const Santaform = () => {
             else{
               if(res.data.tex===true){
                 window.location.href=`/empname?Data=${sidi}`;
+              }
+              else if(res.data.cid===false)
+              {
+                toast('Not a valid Employee of Keenable',{
+                  style:{
+                    background:'red',
+                    color:'white'
+                  }
+                });
               }
               else
               {
@@ -98,9 +106,6 @@ const Santaform = () => {
                   </div>
                   <div className="input-group mb-3">
                       <input type="email" name="santaemails" value={Santa.email} onChange={handlechange} id="email" className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required/>
-                  </div>
-                  <div className="input-group mb-3">
-                      <input type="text" name="santanames" value={Santa.name} onChange={handlechange} className="form-control form-control-lg bg-light fs-6" placeholder="Name" required/>
                   </div>
                   <div className="input-group mb-3 bro">
                       <button className="text-black btn btn0 btn-lg btn-primary w-100 fs-6" onClick={submit}>Submit</button>

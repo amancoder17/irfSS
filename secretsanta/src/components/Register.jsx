@@ -89,7 +89,7 @@ const otp=()=>{
    const emu=user.email;
    const {name,password}=user
    const valemail=validator.isEmail(emu)
-   if(valemail===true && password.length>6 && name!="" && password===confirmv){
+   if(valemail===true && password.length>6 && name!=="" && password===confirmv){
     const pdis=document.getElementById('inpass')
     pdis.disabled=true;
     const cpdis=document.getElementById('inpasscon')
@@ -109,7 +109,7 @@ const otp=()=>{
     }
    })
    }
-   else if(password!=confirmv){
+   else if(password!==confirmv){
     toast('Re-enter correct password',{
       style:{
         background:'red',

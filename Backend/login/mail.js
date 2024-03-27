@@ -14,7 +14,7 @@ async function sendMail(formData)
          from: 'amankeenable@gmail.com',
          to:formData.email,
          subject:'Thank your Secret Santa for auspicious gift ',
-         text:`Hloo ${formData.firstname} ${formData.lastname}, your secret santa on this christmas is ${formData.santanames}`,
+         text:`Hloo ${formData.firstname} ${formData.lastname}, your secret santa on this christmas is ${formData.naam}`,
      }
  
      try {

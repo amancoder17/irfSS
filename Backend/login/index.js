@@ -76,10 +76,11 @@ const sse = [];
 
 
 app.post('/santasubmit', async (req, res) => {
-    const { santanames, santaemails, ids } = req.body
+    const {santaemails, ids } = req.body
     // console.log(santaemails,santanames)
     const check = await Emp.findById(ids)
     const { santaname, santaemail } = check
+
     if (santaemails == check.email) {
         res.json({
             submit: false
@@ -87,33 +88,52 @@ app.post('/santasubmit', async (req, res) => {
     }
     else {
 
-        if (santaname === "" && santaemail === "") {
+        const santamila = await Emp.findOne({email:santaemails})
+        .then(async (ss)=>{
+            if(ss===null)
+            {
+                res.json({
 
-            const santassign = await Emp.findByIdAndUpdate(ids, { santaname: santanames, santaemail: santaemails })
-                .then(santassign => {
-                    if (santassign) {
-                        const { email, firstname, lastname } = santassign
-                        // console.log(santassign,santanames);
+                    cid:false
 
-                        res.json({
-                            tex: true,
-                        })
-                        // sse.push({santanames,email,firstname,lastname});
-                        // console.log(sse)
-                        sendMail({ santanames, email, firstname, lastname });
-                        // res.send({message:"santa assigned",santassign})
-
-                    }
-                    else {
-                        res.send({ message: "Wrong subbmission" })
-                    }
                 })
-        }
-        else {
-            res.json({
-                tex: false,
-            })
-        }
+            }
+            else{
+                if (santaname === "" && santaemail === "") {
+                    let text1=ss.firstname;
+                    let text2=" ";
+                    let text3=ss.lastname;
+                    const naam= text1+text2+text3;
+                    const santassign = await Emp.findByIdAndUpdate(ids, { santaname: naam, santaemail: santaemails })
+                        .then(santassign => {
+                            if (santassign) {
+                                const { email, firstname, lastname } = santassign
+                                // console.log(santassign,santanames);
+        
+                                res.json({
+                                    tex: true,
+                                })
+                                // sse.push({santanames,email,firstname,lastname});
+                                // console.log(sse)
+                                sendMail({ naam, email, firstname, lastname });
+                                // res.send({message:"santa assigned",santassign})
+        
+                            }
+                            else {
+                                res.send({ message: "Wrong subbmission" })
+                            }
+                        })
+                }
+                else {
+                    res.json({
+                        tex: false,
+                    })
+                }
+            }
+        })
+
+
+        
 
     }
 
