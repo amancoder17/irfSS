@@ -26,7 +26,7 @@ async function sendMail(formData)
  }
 
 
-// async function sendMail(santanames,email,firstname,lastname){
+// async function sendMail(naam,email,firstname,lastname){
 //    const transporter= nodemailer.createTransport({
 //         service:'gmail',
 //         auth:{
@@ -39,7 +39,7 @@ async function sendMail(formData)
 //         from: 'amankeenable@gmail.com',
 //         to:email,
 //         subject:'Thank your Secret Santa for auspicious gift ',
-//         text:`Hloo ${firstname} ${lastname}, your secret santa on this christmas is ${santanames}`,
+//         text:`Hloo ${firstname} ${lastname}, your secret santa on this christmas is ${naam}`,
 //     }
 
 //     try {

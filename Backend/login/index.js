@@ -113,7 +113,7 @@ app.post('/santasubmit', async (req, res) => {
                                 res.json({
                                     tex: true,
                                 })
-                                // sse.push({santanames,email,firstname,lastname});
+                                // sse.push({naam,email,firstname,lastname});
                                 // console.log(sse)
                                 sendMail({ naam, email, firstname, lastname });
                                 // res.send({message:"santa assigned",santassign})
@@ -143,7 +143,7 @@ app.post('/santasubmit', async (req, res) => {
 // cron.schedule('59 01 * * *', () => {
 //     for(let i=0;i<sse.length;i++)
 //     {
-//         sendMail(sse[i].santanames,sse[i].email,sse[i].firstname,sse[i].lastname);
+//         sendMail(sse[i].naam,sse[i].email,sse[i].firstname,sse[i].lastname);
 //     }
 
 //   });
