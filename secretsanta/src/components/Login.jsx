@@ -20,8 +20,6 @@ const Login = () => {
   }
 
   const [pass, setpass] = useState("");
-
-
   const handlechangepass = (e) => {
     e.preventDefault();
     let new_pass = e.target.value;
@@ -53,7 +51,6 @@ const Login = () => {
   const logins = () => {
     document.getElementById('forgetdiv').style.display = 'none';
     document.getElementById('logindiv').style.display = 'block';
-
   }
 
 
@@ -215,7 +212,7 @@ const Login = () => {
               </div>
               <div className="mb-3" style={{ color: "red" }}> {pass} </div>
               <div className="input-group mb-3">
-                <input type="password" name="passwordi" value={user.passwordi} onChange={handlechangepass} id="psinput" className="form-control form-control-lg bg-light fs-6" placeholder="New Password" required />
+                <input type="password" name="passwordi" value={user.passwordi} onChange={handlechangepass} id="psinput" maxLength="10" className="form-control form-control-lg bg-light fs-6" placeholder="New Password" required />
               </div>
               <div className="input-group mb-3 bro">
                 <button className="text-black btn btn-lg btn-primary w-100 fs-6" id="sotpbtn" onClick={forgotOtp}>Send OTP</button>
