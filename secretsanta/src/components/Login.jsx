@@ -59,12 +59,12 @@ const Login = () => {
 
   const [Otp, setOtp] = useState("")
   const forgotOtp = () => {
-    let otp_val = Math.floor(Math.random() * 10000);
+    let otp_val = Math.floor((Math.random()*900000)+100000);
     setOtp(otp_val)
     const emu = user.email;
     const valemail = validator.isEmail(emu)
     if (valemail === true) {
-
+      
       const cred = { otp_val, emu }
 
       axios.post("http://localhost:9002/resetotpmail", cred)
@@ -78,6 +78,8 @@ const Login = () => {
             })
           }
           else {
+            const fdise=document.getElementById('foremail');
+            fdise.disabled=true;
             document.getElementById('oootp').style.display = 'block';
             document.getElementById('sotpbtn').style.display = 'none';
             document.getElementById('cpbtn').style.display = 'block';
@@ -206,10 +208,10 @@ const Login = () => {
                 <h2>Forgot Password</h2>
               </div>
               <div className="input-group mb-3">
-                <input type="email" name="email" value={user.email} onChange={handlechange} className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required />
+                <input type="email" name="email" value={user.email} onChange={handlechange} id="foremail" className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required />
               </div>
               <div className="input-group mb-3">
-                <input type="text" name="otp" value={validotp} onChange={handlechangeOtp} id="oootp" className="form-control form-control-lg bg-light fs-6 " placeholder="OTP" required />
+                <input type="text" name="otp" value={validotp} onChange={handlechangeOtp} id="oootp" maxLength="6" className="form-control form-control-lg bg-light fs-6 " placeholder="OTP" required />
               </div>
               <div className="mb-3" style={{ color: "red" }}> {pass} </div>
               <div className="input-group mb-3">

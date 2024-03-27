@@ -25,6 +25,8 @@ const handlechange= (e) =>{
 const [message, setMessage] = useState("");
 const [pass, setpass] = useState("");
 
+const[confirmv,setConfirmv]=useState("");
+
 const handlechangeemail=(e)=>{
   e.preventDefault();
   let new_Email = e.target.value;
@@ -58,6 +60,13 @@ const handlechangepass=(e)=>{
 }
 
 
+const handlechangepassconfirm=(e)=>{
+e.preventDefault();
+const inputValue= e.target.value;
+setConfirmv(inputValue)
+}
+
+
 const[validotp,setvalidotp]=useState("")
 const handlechangeOtp=(o)=>{
   o.preventDefault();
@@ -69,16 +78,27 @@ const handlechangeOtp=(o)=>{
 const [Otp,setOtp]=useState("")
 
 const otp=()=>{
-   let otp_val=Math.floor(Math.random()*10000);
+   let otp_val=Math.floor((Math.random()*900000)+100000);
    setOtp(otp_val)
+   const edis=document.getElementById('email')
+    edis.disabled=true;
+    const ndis=document.getElementById('inname')
+    ndis.disabled=true;
+    
+
    const emu=user.email;
    const {name,password}=user
    const valemail=validator.isEmail(emu)
-   if(valemail===true && password.length>6 && name!=""){
+   if(valemail===true && password.length>6 && name!="" && password===confirmv){
+    const pdis=document.getElementById('inpass')
+    pdis.disabled=true;
+    const cpdis=document.getElementById('inpasscon')
+    cpdis.disabled=true;
     const cred = {otp_val,emu}
     document.getElementById('oootp').style.display = 'block';
     document.getElementById('oootpbtn').style.display='none';
     document.getElementById('rgbtn').style.display='block';
+    
     axios.post("http://localhost:9002/otpmail",cred)
    .then(res=>console.log(res))
 
@@ -88,6 +108,14 @@ const otp=()=>{
       color:'white'
     }
    })
+   }
+   else if(password!=confirmv){
+    toast('Re-enter correct password',{
+      style:{
+        background:'red',
+        color:'white'
+      }
+     })
    }
    else{
     toast('Enter your Details Correctly',{
@@ -106,8 +134,22 @@ const register= ()=>{
   if(name && valemail && password.length>6 && validotp==Otp)
   {
     axios.post("http://localhost:9002/register",user)
-    .then(res=> console.log(res))
-    .then(navigate('/'))
+    .then((res)=>{
+      if(res.data.count===false)
+      {
+        toast('Maximum User Limit Reached',{
+          style:{
+            background:'red',
+            color:'white'
+          }
+        });
+      }
+      else{
+        console.log(res)
+        navigate('/')
+      }
+    })
+    
     
   }
   else{
@@ -152,14 +194,17 @@ const register= ()=>{
                       <input type="email" name="email" value={user.email} onChange={handlechangeemail} id="email" className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required/>
                   </div>
                   <div className="input-group mb-3">
-                      <input type="text" name="name" value={user.name} onChange={handlechange} className="form-control form-control-lg bg-light fs-6" placeholder="Name" required/>
+                      <input type="text" name="name" value={user.name} onChange={handlechange} id="inname" className="form-control form-control-lg bg-light fs-6" placeholder="Name" required/>
                   </div>
                   <div className="mb-3" style = {{ color: "red" }}> {pass} </div>
                   <div className="input-group mb-3">
-                      <input type="password" name="password" value={user.password} onChange={handlechangepass} className="form-control form-control-lg bg-light fs-6" placeholder="Password" required/>
+                      <input type="password" name="password" value={user.password} id="inpass" maxLength="10" onChange={handlechangepass} className="form-control form-control-lg bg-light fs-6" placeholder="Password" required/>
                   </div>
                   <div className="input-group mb-3">
-                      <input type="text" name="otp" value={validotp} onChange={handlechangeOtp} id="oootp" className="form-control form-control-lg bg-light fs-6 "  placeholder="OTP" required/>
+                      <input type="password" name="confirmpassword" value={confirmv} id="inpasscon" maxLength="10" onChange={handlechangepassconfirm} className="form-control form-control-lg bg-light fs-6" placeholder="Confirm Password" required/>
+                  </div>
+                  <div className="input-group mb-3">
+                      <input type="text" name="otp" value={validotp} onChange={handlechangeOtp} id="oootp" maxLength="6" className="form-control form-control-lg bg-light fs-6 "  placeholder="OTP" required/>
                   </div>
 
                   <div className="input-group mb-3 bro">

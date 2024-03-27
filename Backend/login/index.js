@@ -171,17 +171,29 @@ app.patch('/empl/:id', async (req, res) => {
 
 app.post('/register', async (req, res) => {
     try {
-        const { name, email, password } = req.body
-        const saltRound = 10;
-        const hashpass = await bcrypt.hash(password, saltRound);
-        const user = await User.create({
-            name,
-            email,
-            password: hashpass,
-        })
-        res.send({ message: "admin created" })
+        const count = await User.countDocuments()
+        if(count<1)
+        {
+            const { name, email, password } = req.body
+            const saltRound = 10;
+            const hashpass = await bcrypt.hash(password, saltRound);
+            const user = await User.create({
+                name,
+                email,
+                password: hashpass,
+            })
+            res.send({ message: "admin created" })
 
-    } catch (error) {
+        }
+        else{
+            res.json({
+                count:false
+            })
+        }
+       
+
+    }
+     catch (error) {
         console.log(error);
     }
 });

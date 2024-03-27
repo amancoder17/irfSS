@@ -30,6 +30,12 @@ const Emplist = () => {
         if(res.data.ans===false)
         {
           navigate(0)
+          toast('Employee  Added',{
+            style:{
+              background:'green',
+              color:'white'
+            }
+          });
         }
         else
         {
