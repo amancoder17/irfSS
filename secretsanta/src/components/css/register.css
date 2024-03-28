@@ -50,7 +50,11 @@ body{
     background-color: pink;
     border-color: purple;
 }
-
+#resendo{
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
 
 /*------------ For small screens------------*/
 

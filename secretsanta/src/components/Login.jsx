@@ -46,12 +46,16 @@ const Login = () => {
   const forgot = () => {
     document.getElementById('logindiv').style.display = 'none';
     document.getElementById('forgetdiv').style.display = 'block';
+    const resbtn= document.getElementById('resend');
+    resbtn.disabled=true;
   }
 
   const logins = () => {
     document.getElementById('forgetdiv').style.display = 'none';
     document.getElementById('logindiv').style.display = 'block';
   }
+
+ 
 
 
   const [Otp, setOtp] = useState("")
@@ -75,6 +79,11 @@ const Login = () => {
             })
           }
           else {
+            setTimeout(() => {
+              document.getElementById('resend').disabled=null;
+            }, 20000);
+            const resbtn=document.getElementById('resend')
+            resbtn.style.display='block';
             const fdise=document.getElementById('foremail');
             fdise.disabled=true;
             document.getElementById('oootp').style.display = 'block';
@@ -219,7 +228,10 @@ const Login = () => {
               </div>
               <div className="input-group mb-3 bro">
                 <button className="text-black btn btn-lg btn-primary w-100 fs-6" id="cpbtn" onClick={changepassword}>Change Password</button>
-              </div> <br />
+              </div>
+              <div className="input-group mb-3 bro">
+                <button className="text-black btn btn-lg btn-primary w-50 fs-6 " id="resend" onClick={forgotOtp}>Resend OTP</button>
+              </div>
               <a className="text-center" id="logoi" onClick={logins}>Login</a>
             </div>
           </div>

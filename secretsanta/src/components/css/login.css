@@ -11,6 +11,12 @@ body{
 .simg{
     width: 250px;
 }
+#resend{
+    border: solid black 2px ;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
 #psinput{
     display: none;
 }

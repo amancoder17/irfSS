@@ -15,6 +15,8 @@ const [user,setUser]= useState({
   password:""
 })
 
+
+
 const handlechange= (e) =>{
   e.preventDefault();
   const {name,value}=e.target
@@ -78,6 +80,8 @@ const handlechangeOtp=(o)=>{
 const [Otp,setOtp]=useState("")
 
 const otp=()=>{
+  const resenbt= document.getElementById('resendo');
+resenbt.disabled=true;
    let otp_val=Math.floor((Math.random()*900000)+100000);
    setOtp(otp_val)
    const edis=document.getElementById('email')
@@ -90,11 +94,15 @@ const otp=()=>{
    const {name,password}=user
    const valemail=validator.isEmail(emu)
    if(valemail===true && password.length>6 && name!=="" && password===confirmv){
+    setTimeout(() => {
+      document.getElementById('resendo').disabled=null;
+    }, 20000);
     const pdis=document.getElementById('inpass')
     pdis.disabled=true;
     const cpdis=document.getElementById('inpasscon')
     cpdis.disabled=true;
     const cred = {otp_val,emu}
+    document.getElementById('resendo').style.display='block'
     document.getElementById('oootp').style.display = 'block';
     document.getElementById('oootpbtn').style.display='none';
     document.getElementById('rgbtn').style.display='block';
@@ -213,6 +221,9 @@ const register= ()=>{
                   <div className="input-group mb-3 bro">
                       <button className="text-black btn btn-lg btn-primary w-100 fs-6" id="rgbtn" onClick={register}>Register</button>
                   </div>
+                  <div className="input-group mb-3 bro">
+                <button className="text-black btn btn-lg btn-primary w-50 fs-6 " id="resendo" onClick={otp}>Resend OTP</button>
+              </div>
                   
                  
                   <Toaster />
