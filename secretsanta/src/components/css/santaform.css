@@ -11,7 +11,11 @@ body{
 .simg{
     width: 250px;
 }
-
+#santaotpres{
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
 /*------------ Login container ------------*/
 
 .box-area{
@@ -52,6 +56,9 @@ body{
     border-color: purple;
 }
 
+#santsub{
+    display: none;
+}
 
 /*------------ For small screens------------*/
 
