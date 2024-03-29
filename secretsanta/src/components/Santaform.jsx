@@ -11,11 +11,38 @@ const Santaform = () => {
   const idi = url.pathname;
   const sidi = idi.slice(11);
 
-  const [validotp, setvalidotp] = useState("")
-  const handlechangeOtp = (o) => {
-    o.preventDefault();
-    setvalidotp(o.target.value)
+
+  const inputs = document.querySelectorAll("#otfieldsanta input");
+
+  inputs.forEach((input, index) => {
+      input.dataset.index = index;
+      input.addEventListener("keyup", handleOtp);
+      input.addEventListener("paste", handleOnPasteOtp);
+  });
+  
+  function handleOtp(e) {
+      const input = e.target;
+      let value = input.value;
+      let isValidInput = value.match(/[0-9a-z]/gi);
+      input.value = "";
+      input.value = isValidInput ? value[0] : "";
+  
+      let fieldIndex = input.dataset.index;
+      if (fieldIndex < inputs.length - 1 && isValidInput) {
+          input.nextElementSibling.focus();
+      }
+  
+      if (e.key === "Backspace" && fieldIndex > 0) {
+          input.previousElementSibling.focus();
+      }
   }
+  function handleOnPasteOtp(e) {
+    const data = e.clipboardData.getData("text");
+    const value = data.split("");
+    if (value.length === inputs.length) {
+        inputs.forEach((input, index) => (input.value = value[index]));
+    }
+}
 
   const [Santa, setSanta] = useState({
     santaemails: "",
@@ -40,24 +67,34 @@ const Santaform = () => {
     const emu = santaemails;
     const valemail = validator.isEmail(emu)
     if (valemail === true) {
-      setTimeout(() => {
-        document.getElementById('santaotpres').disabled=null;
-      }, 20000);
-      document.getElementById('santsub').style.display = 'block';
-      document.getElementById('santaotp').style.display = 'none';
-      document.getElementById('santaotpres').style.display = 'block';
-
       const cred = { otp_val, emu }
 
-      axios.post("http://localhost:9002/otpmail", cred)
+      axios.post("http://localhost:9002/otpmailsanta", cred)
         .then((res) => {
-
-          toast('OTP sent to Email', {
-            style: {
-              background: 'green',
-              color: 'white'
-            }
-          })
+          if (res.data.find === false) {
+            toast('Not a Valid employee of Keenable', {
+              style: {
+                background: 'red',
+                color: 'white'
+              }
+            })
+          }
+          else {
+            setTimeout(() => {
+              document.getElementById('santaotpres').disabled = null;
+            }, 20000);
+            document.getElementById('santsub').style.display = 'block';
+            document.getElementById('santaotp').style.display = 'none';
+            document.getElementById('santaotpres').style.display = 'block';
+            document.getElementById('otfieldsanta').style.display = 'block';
+            
+            toast('OTP sent to Email', {
+              style: {
+                background: 'green',
+                color: 'white'
+              }
+            })
+          }
         })
 
     }
@@ -72,6 +109,14 @@ const Santaform = () => {
 
   }
   const submit = () => {
+
+    let validotp = "";
+    inputs.forEach((input) => {
+        validotp += input.value;
+        // input.disabled = true;
+        // input.classList.add("disabled");
+    });
+
     const { santaemails, ids } = Santa
     if (santaemails && validotp == Otp) {
       axios.post(`http://localhost:9002/santasubmit`, Santa)
@@ -156,8 +201,13 @@ const Santaform = () => {
               <div className="input-group mb-3">
                 <input type="email" name="santaemails" value={Santa.santaemails} onChange={handlechange} id="sswemail" className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required />
               </div>
-              <div className="input-group mb-3">
-                <input type="text" name="otp" value={validotp} onChange={handlechangeOtp} id="santaott" maxLength="6" className="form-control form-control-lg bg-light fs-6 " placeholder="OTP" required />
+              <div class="input-group mb-3 otp-field" id="otfieldsanta">
+                <input type="text" maxlength="1" />
+                <input type="text" maxlength="1" />
+                <input class="space" type="text" maxlength="1" />
+                <input type="text" maxlength="1" />
+                <input type="text" maxlength="1" />
+                <input type="text" maxlength="1" />
               </div>
               <div className="input-group mb-3 bro">
                 <button className="text-black btn btn-lg btn-primary w-100 fs-6" id="santaotp" onClick={santaOtp}>Send OTP</button>

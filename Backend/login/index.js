@@ -231,6 +231,30 @@ app.post('/otpmail', (req, res) => {
 
 })
 
+
+app.post('/otpmailsanta',async(req,res)=>{
+    const {otp_val,emu}=req.body
+    if(otp_val && emu){
+        const haikya= await Emp.findOne({email:emu})
+        .then((rasta)=>{
+            if(rasta===null){
+                res.json({
+                    find:false
+                })
+            }
+            else{
+                sendOtpMail({ otp_val, emu })
+                res.send({ message: "OTP sent" })
+            }
+
+        }
+        )
+    }
+    else {
+        res.send({ message: "Unable to sent OTP" })
+    }
+})
+
 app.post('/resetotpmail', async (req, res) => {
     const { otp_val, emu } = req.body
     if (otp_val && emu) {

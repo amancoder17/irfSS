@@ -5,6 +5,42 @@ import toast, { Toaster } from 'react-hot-toast';
 import validator from 'validator'
 import { useNavigate } from "react-router-dom";
 const Login = () => {
+
+
+  const inputs = document.querySelectorAll("#otfieldfor input");
+
+  inputs.forEach((input, index) => {
+      input.dataset.index = index;
+      input.addEventListener("keyup", handleOtp);
+      input.addEventListener("paste", handleOnPasteOtp);
+  });
+  
+  function handleOtp(e) {
+      const input = e.target;
+      let value = input.value;
+      let isValidInput = value.match(/[0-9a-z]/gi);
+      input.value = "";
+      input.value = isValidInput ? value[0] : "";
+  
+      let fieldIndex = input.dataset.index;
+      if (fieldIndex < inputs.length - 1 && isValidInput) {
+          input.nextElementSibling.focus();
+      }
+  
+      if (e.key === "Backspace" && fieldIndex > 0) {
+          input.previousElementSibling.focus();
+      }
+  }
+  function handleOnPasteOtp(e) {
+    const data = e.clipboardData.getData("text");
+    const value = data.split("");
+    if (value.length === inputs.length) {
+        inputs.forEach((input, index) => (input.value = value[index]));
+    }
+}
+
+
+
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
@@ -34,13 +70,6 @@ const Login = () => {
 
     }
 
-  }
-
-
-  const [validotp, setvalidotp] = useState("")
-  const handlechangeOtp = (o) => {
-    o.preventDefault();
-    setvalidotp(o.target.value)
   }
 
   const forgot = () => {
@@ -86,10 +115,11 @@ const Login = () => {
             resbtn.style.display='block';
             const fdise=document.getElementById('foremail');
             fdise.disabled=true;
-            document.getElementById('oootp').style.display = 'block';
+            document.getElementById('hidh').style.display='block';
             document.getElementById('sotpbtn').style.display = 'none';
             document.getElementById('cpbtn').style.display = 'block';
             document.getElementById('psinput').style.display = 'block';
+            document.getElementById('otfieldfor').style.display='block';
             toast('OTP sent to Email', {
               style: {
                 background: 'green',
@@ -111,6 +141,15 @@ const Login = () => {
 
   }
   const changepassword = () => {
+
+
+    let validotp = "";
+    inputs.forEach((input) => {
+        validotp += input.value;
+    });
+
+
+
     const emu = user.email;
     const valemail = validator.isEmail(emu)
     if (valemail===true && user.passwordi.length > 6 && Otp == validotp) {
@@ -216,12 +255,18 @@ const Login = () => {
               <div className="input-group mb-3">
                 <input type="email" name="email" value={user.email} onChange={handlechange} id="foremail" className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required />
               </div>
-              <div className="input-group mb-3">
-                <input type="text" name="otp" value={validotp} onChange={handlechangeOtp} id="oootp" maxLength="6" className="form-control form-control-lg bg-light fs-6 " placeholder="OTP" required />
-              </div>
               <div className="mb-3" style={{ color: "red" }}> {pass} </div>
               <div className="input-group mb-3">
                 <input type="password" name="passwordi" value={user.passwordi} onChange={handlechangepass} id="psinput" maxLength="10" className="form-control form-control-lg bg-light fs-6" placeholder="New Password" required />
+              </div>
+              <h4 className="text-center" id="hidh">OTP</h4>
+              <div class="input-group mb-1 otp-field" id="otfieldfor">
+                <input type="text" maxlength="1" />
+                <input type="text" maxlength="1" />
+                <input class="space" type="text" maxlength="1"/>
+                <input type="text" maxlength="1" />
+                <input type="text" maxlength="1" />
+                <input type="text" maxlength="1" />
               </div>
               <div className="input-group mb-3 bro">
                 <button className="text-black btn btn-lg btn-primary w-100 fs-6" id="sotpbtn" onClick={forgotOtp}>Send OTP</button>
