@@ -13,32 +13,36 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors());
 
 
-//connecting Database
-// mongoose.connect('mongodb+srv://amanpanwarcs2019:9119Aman@cluster0.szdvs6c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
-// .then(()=>{
-//     console.log('DB connected');
-// })
-// .catch((err)=>{
-//     console.log(err);
-// })
+// Connecting Database
+mongoose.connect('mongodb+srv://amanpanwarcs2019:9119Aman@cluster0.szdvs6c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+.then(()=>{
+    console.log('DB connected');
+})
+.catch((err)=>{
+    console.log(err);
+})
 
-mongoose.connect('mongodb://127.0.0.1:27017/secrets')
-    .then(() => {
-        console.log('DB connected');
-    })
-    .catch((err) => {
-        console.log(err);
-    })
 
+//Connecting Database
+
+// mongoose.connect('mongodb://127.0.0.1:27017/secrets')
+//     .then(() => {
+//         console.log('DB connected');
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     })
+
+    // Models of database 
 const User = require('./models/user');
 const Emp = require('./models/emp');
 
 
-
+// Login API
 app.post('/login', async (req, res) => {
     try {
         const { email, passwordi } = req.body
-        const conf = User.findOne({ email: email })
+        const conf = User.findOne({ email: email })  // checks from backend weather user exist or not
             .then((docs) => {
                 if (docs === null) {
                     res.json({
@@ -48,13 +52,12 @@ app.post('/login', async (req, res) => {
                 else {
                     checkUser(passwordi, docs.password)
                     async function checkUser(password, phash) {
-                        const match = await bcrypt.compare(password, phash);
+                        const match = await bcrypt.compare(password, phash);  // hasing of password using bcrypt
 
                         if (match) {
                             res.json({
                                 isLoggedIn: match,
 
-                                // Other relevant data for the React component
                             });
                         }
                         else {
@@ -74,11 +77,11 @@ app.post('/login', async (req, res) => {
 })
 const sse = [];
 
-
+// Santa submit form API
 app.post('/santasubmit', async (req, res) => {
     const {santaemails, ids } = req.body
     // console.log(santaemails,santanames)
-    const check = await Emp.findById(ids)
+    const check = await Emp.findById(ids)     // Finds Employee that needs to be map to assignee
     const { santaname, santaemail } = check
 
     if (santaemails == check.email) {
@@ -88,7 +91,7 @@ app.post('/santasubmit', async (req, res) => {
     }
     else {
 
-        const santamila = await Emp.findOne({email:santaemails})
+        const santamila = await Emp.findOne({email:santaemails})  // finds employee weather it exist in Database or not
         .then(async (ss)=>{
             if(ss===null)
             {
@@ -99,12 +102,12 @@ app.post('/santasubmit', async (req, res) => {
                 })
             }
             else{
-                if (santaname === "" && santaemail === "") {
+                if (santaname === "" && santaemail === "") {                // check for, is santa already assigned to and employee or not 
                     let text1=ss.firstname;
                     let text2=" ";
                     let text3=ss.lastname;
                     const naam= text1+text2+text3;
-                    const santassign = await Emp.findByIdAndUpdate(ids, { santaname: naam, santaemail: santaemails })
+                    const santassign = await Emp.findByIdAndUpdate(ids, { santaname: naam, santaemail: santaemails })  // find employee and update santa name and email to it
                         .then(santassign => {
                             if (santassign) {
                                 const { email, firstname, lastname } = santassign
@@ -140,6 +143,8 @@ app.post('/santasubmit', async (req, res) => {
 
 })
 
+// Scheduler for sending mail on desiered date and time
+
 // cron.schedule('59 01 * * *', () => {
 //     for(let i=0;i<sse.length;i++)
 //     {
@@ -148,8 +153,8 @@ app.post('/santasubmit', async (req, res) => {
 
 //   });
 
-
-app.get('/empname/:id', async (req, res) => {
+//API for fetching a particular employeee name for showing it as a response on after submitting santa submit form 
+app.get('/empname/:id', async (req, res) => {    
     try {
         const name = await Emp.findById(req.params.id)
         res.json(name);
@@ -158,6 +163,8 @@ app.get('/empname/:id', async (req, res) => {
     }
 })
 
+
+// API for geting all employee details from database
 app.get('/empl', cors(), async (req, res) => {
     try {
         const empdata = await Emp.find()
@@ -167,6 +174,8 @@ app.get('/empl', cors(), async (req, res) => {
     }
 })
 
+
+// API for deleting and employee from Database
 app.delete('/empl/:id', async (req, res) => {
     try {
         const id = req.params.id;
@@ -177,6 +186,7 @@ app.delete('/empl/:id', async (req, res) => {
     }
 })
 
+// API to Update the details of a particular employee
 app.patch('/empl/:id', async (req, res) => {
     try {
         const id = req.params.id;
@@ -189,14 +199,16 @@ app.patch('/empl/:id', async (req, res) => {
     }
 })
 
+// API for registration of admin
 app.post('/register', async (req, res) => {
     try {
-        const count = await User.countDocuments()
+        const count = await User.countDocuments() // check for count the no of admin exists in database
         if(count<1)
         {
             const { name, email, password } = req.body
             const saltRound = 10;
             const hashpass = await bcrypt.hash(password, saltRound);
+            // Create new admin in database
             const user = await User.create({
                 name,
                 email,
@@ -218,6 +230,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// API to send OTP mail
 app.post('/otpmail', (req, res) => {
     const { otp_val, emu } = req.body
     if (otp_val && emu) {
@@ -231,11 +244,11 @@ app.post('/otpmail', (req, res) => {
 
 })
 
-
+// API for sending otp mail for santa submit
 app.post('/otpmailsanta',async(req,res)=>{
     const {otp_val,emu}=req.body
     if(otp_val && emu){
-        const haikya= await Emp.findOne({email:emu})
+        const haikya= await Emp.findOne({email:emu})   
         .then((rasta)=>{
             if(rasta===null){
                 res.json({
@@ -255,10 +268,11 @@ app.post('/otpmailsanta',async(req,res)=>{
     }
 })
 
+// API for reset password OTP
 app.post('/resetotpmail', async (req, res) => {
     const { otp_val, emu } = req.body
     if (otp_val && emu) {
-        const mila = await User.findOne({ email: emu })
+        const mila = await User.findOne({ email: emu })    //finds the admin from database weather it exist or not then send otp to mail
             .then((resp) => {
                 if (resp === null) {
                     res.json({
@@ -280,21 +294,24 @@ app.post('/resetotpmail', async (req, res) => {
 
 
 })
+
+// API for reset the password of admin
 app.post('/reset', async (req, res) => {
     const { email, passwordi } = req.body
     const saltRound = 10;
     const hashpass = await bcrypt.hash(passwordi, saltRound);
-    const badla = await User.findOneAndUpdate({ email: email }, { password: hashpass })
+    const badla = await User.findOneAndUpdate({ email: email }, { password: hashpass })  // find the admin and upadtes password
         .then((chabi) => {
             res.send({ message: "password Updated" })
 
         })
 })
 
+//API to add an employee in employee list of company
 app.post('/emplist', async (req, res) => {
 
     const { firstname, lastname, email } = req.body
-    const fin = await Emp.findOne({ email: email })
+    const fin = await Emp.findOne({ email: email })   // check weather it is already added in database or not
         .then((final) => {
             if (final === null) {
 
