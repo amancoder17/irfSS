@@ -146,7 +146,7 @@ app.post('/santasubmit', async (req, res) => {
 
 //Scheduler for sending mail on desiered date and time
 
-cron.schedule('59 01 * * *', () => {
+cron.schedule('0 0 26 12 *', () => {
     for(let i=0;i<sse.length;i++)
     {
         sendMail(sse[i].naam,sse[i].email,sse[i].firstname,sse[i].lastname);
