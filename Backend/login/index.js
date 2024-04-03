@@ -14,6 +14,7 @@ app.use(cors());
 
 
 // Connecting Database
+
 mongoose.connect('mongodb+srv://amanpanwarcs2019:9119Aman@cluster0.szdvs6c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 .then(()=>{
     console.log('DB connected');
@@ -116,9 +117,9 @@ app.post('/santasubmit', async (req, res) => {
                                 res.json({
                                     tex: true,
                                 })
-                                // sse.push({naam,email,firstname,lastname});
+                                sse.push({naam,email,firstname,lastname});
                                 // console.log(sse)
-                                sendMail({ naam, email, firstname, lastname });
+                                // sendMail({ naam, email, firstname, lastname });
                                 // res.send({message:"santa assigned",santassign})
         
                             }
@@ -143,15 +144,15 @@ app.post('/santasubmit', async (req, res) => {
 
 })
 
-// Scheduler for sending mail on desiered date and time
+//Scheduler for sending mail on desiered date and time
 
-// cron.schedule('59 01 * * *', () => {
-//     for(let i=0;i<sse.length;i++)
-//     {
-//         sendMail(sse[i].naam,sse[i].email,sse[i].firstname,sse[i].lastname);
-//     }
+cron.schedule('59 01 * * *', () => {
+    for(let i=0;i<sse.length;i++)
+    {
+        sendMail(sse[i].naam,sse[i].email,sse[i].firstname,sse[i].lastname);
+    }
 
-//   });
+  });
 
 //API for fetching a particular employeee name for showing it as a response on after submitting santa submit form 
 app.get('/empname/:id', async (req, res) => {    
