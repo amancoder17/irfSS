@@ -149,7 +149,7 @@ const Register = () => {
       document.getElementById('oootpbtn').style.display = 'none';
       document.getElementById('rgbtn').style.display = 'block';
 
-      axios.post("http://localhost:9002/otpmail", cred)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/otpmail`, cred)
         .then(res => console.log(res))
 
       toast('OTP sent to Email', {
@@ -193,7 +193,7 @@ const Register = () => {
     const { name, email, password } = user
     const valemail = validator.isEmail(email)
     if (name && valemail && password.length > 6 && validotp == Otp) {
-      axios.post("http://localhost:9002/register", user)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/register`, user)
         .then((res) => {
           if (res.data.count === false) {
             toast('Maximum User Limit Reached', {

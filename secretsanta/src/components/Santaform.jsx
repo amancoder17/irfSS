@@ -3,9 +3,11 @@ import React, { useState } from 'react'
 import './css/santaform.css'
 import validator from 'validator'
 import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Santaform = () => {
 
+  const navigate= useNavigate();
 
   const url = new URL(window.location.href);
   const idi = url.pathname;
@@ -69,7 +71,7 @@ const Santaform = () => {
     if (valemail === true) {
       const cred = { otp_val, emu }
 
-      axios.post("http://localhost:9002/otpmailsanta", cred)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/otpmailsanta`, cred)
         .then((res) => {
           if (res.data.find === false) {
             toast('Not a Valid employee of Keenable', {
@@ -119,7 +121,7 @@ const Santaform = () => {
 
     const { santaemails, ids } = Santa
     if (santaemails && validotp == Otp) {
-      axios.post(`http://localhost:9002/santasubmit`, Santa)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/santasubmit`, Santa)
         .then((res) => {
           if (res.data.submit === false) {
             toast('Reshuffle the QR', {
@@ -130,7 +132,8 @@ const Santaform = () => {
           }
           else {
             if (res.data.tex === true) {
-              window.location.href = `/empname?Data=${sidi}`;
+              localStorage.setItem('hogya', true)
+              navigate(`/empname?Data=${sidi}`)
             }
             else if (res.data.cid === false) {
               toast('Not a valid Employee of Keenable', {

@@ -97,7 +97,7 @@ const Login = () => {
       
       const cred = { otp_val, emu }
 
-      axios.post("http://localhost:9002/resetotpmail", cred)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/resetotpmail`, cred)
         .then((res) => {
           if (res.data.find === false) {
             toast('User Not Found', {
@@ -153,7 +153,7 @@ const Login = () => {
     const emu = user.email;
     const valemail = validator.isEmail(emu)
     if (valemail===true && user.passwordi.length > 6 && Otp == validotp) {
-      axios.post("http://localhost:9002/reset", user)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/reset`, user)
         .then(res => console.log(res))
         .then(navigate(0))
         .then(
@@ -187,7 +187,7 @@ const Login = () => {
       });
     }
     else {
-      axios.post("http://localhost:9002/login", user)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/login`, user)
         .then((res) => {
           if (res.data.isLoggedIn === true) {
             localStorage.setItem('log', true)
@@ -244,13 +244,13 @@ const Login = () => {
               <div className="input-group mb-3 bro">
                 <button className="text-black btn btn-lg btn-primary w-100 fs-6" onClick={login}>Login</button>
               </div> <br />
-              <a className="text-center" id="forget" onClick={forgot}>Forgotten password?</a>
+              <a className="text-center" id="forget" onClick={forgot}>Forgotten password? </a>
 
 
             </div>
             <div className="row align-items-center" id="forgetdiv">
               <div className="header-text mb-4">
-                <h2>Forgot Password</h2>
+                <h2>Forgot Password </h2>
               </div>
               <div className="input-group mb-3">
                 <input type="email" name="email" value={user.email} onChange={handlechange} id="foremail" className="form-control form-control-lg bg-light fs-6" placeholder="Email address" required />

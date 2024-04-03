@@ -16,7 +16,7 @@ const UpdateEmp = () => {
 
   const fetchName= async(id)=>{
     try {
-        const ename= await axios.get(`http://localhost:9002/empname/${id}`)
+        const ename= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empname/${id}`)
         setname(ename.data);
     } catch (e) {
         console.error(e);
@@ -31,7 +31,7 @@ const UpdateEmp = () => {
   const update=(id)=>{
 
     const {firstname,lastname,email}=Ename
-    axios.patch(`http://localhost:9002/empl/${id}`,Ename)
+    axios.patch(`${process.env.REACT_APP_ROUTE_KEY}/empl/${id}`,Ename)
     .then(res=> console.log(res))
     .then(navigate('/emplist'))
   }

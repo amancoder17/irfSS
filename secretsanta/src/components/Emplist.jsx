@@ -25,7 +25,7 @@ const Emplist = () => {
     const {firstname,lastname,email}=emp
     if(firstname && lastname && email)
     {
-      axios.post("http://localhost:9002/emplist",emp)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/emplist`,emp)
       .then((res)=>{
         if(res.data.ans===false)
         {

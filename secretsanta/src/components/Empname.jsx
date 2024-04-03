@@ -14,7 +14,7 @@ const Empname = () => {
 
       const fetchName= async(id)=>{
         try {
-            const ename= await axios.get(`http://localhost:9002/empname/${id}`)
+            const ename= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empname/${id}`)
             setname(ename.data);
         } catch (e) {
             console.error(e);

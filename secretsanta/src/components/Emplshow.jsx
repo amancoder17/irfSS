@@ -10,7 +10,7 @@ const Emplshow = () => {
     const navigate= useNavigate();
   const fetchData = async()=>{
     try {
-      const response= await axios.get('http://localhost:9002/empl')
+      const response= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`)
       setEmployees(response.data);
       // console.log(employees);
     
@@ -23,7 +23,7 @@ const Emplshow = () => {
 
 const handleDelete = async(id)=>{
   try {
-     await axios.delete(`http://localhost:9002/empl/${id}`)
+     await axios.delete(`${process.env.REACT_APP_ROUTE_KEY}/empl/${id}`)
      .then((response)=>{
 
       console.log(response)

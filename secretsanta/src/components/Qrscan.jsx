@@ -13,7 +13,7 @@ useEffect(()=>{
 
 const fetchData = async()=>{
     try {
-      const response= await axios.get('http://localhost:9002/empl')
+      const response= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`)
       setEmployees(response.data);
       // console.log(employees);
     

@@ -10,7 +10,7 @@ const Records = () => {
     },[])
     const fetchrecord= async()=>{
         try {
-        const rec= await axios.get('http://localhost:9002/empl');
+        const rec= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`);
         setrecord(rec.data)
             
         } catch (e) {
