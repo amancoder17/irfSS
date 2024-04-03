@@ -5,9 +5,14 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Emplshow = () => {
+  // React-router function to navigate b/w the pages
+  const navigate= useNavigate();
+
+
+  // set the states for employees into the list 
     const[employees,setEmployees]= useState([]);
 
-    const navigate= useNavigate();
+ // Function to fecth employee data from DB and render it.    
   const fetchData = async()=>{
     try {
       const response= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`)
@@ -20,7 +25,7 @@ const Emplshow = () => {
     }
 }
 
-
+// function to delete an employee from DB
 const handleDelete = async(id)=>{
   try {
      await axios.delete(`${process.env.REACT_APP_ROUTE_KEY}/empl/${id}`)
@@ -36,9 +41,10 @@ const handleDelete = async(id)=>{
   }
   
 }
+// Update function to update details of a particular employee
 const handleUpdate =  (id)=>{
   try {
-   navigate(`updemp/${id}`)
+   navigate(`updemp/${id}`)  // navigate to update page with particular unique id of an employee
     }
     
   catch (e) {
@@ -46,13 +52,13 @@ const handleUpdate =  (id)=>{
   }
 }
 
-
+// Hook used to render data at time of page loading 
 useEffect(()=>{
   fetchData()
 },[])
 
 
-
+// Frontend for employee show
   return (
     <div className='mss'>
         <div className='ectt'>

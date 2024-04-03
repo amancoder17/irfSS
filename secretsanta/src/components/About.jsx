@@ -1,6 +1,7 @@
 import React from 'react'
 import "./css/about.css"
 import Navbar from './Navbar'
+// react icon library
 import { AiFillHeart } from "react-icons/ai";
 
 const About = () => {

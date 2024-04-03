@@ -49,4 +49,5 @@ async function sendMail(naam,email,firstname,lastname){
         console.log(error);
     }
 }
+// Export mail function
 module.exports = sendMail;

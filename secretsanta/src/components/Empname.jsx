@@ -4,18 +4,25 @@ import { useSearchParams } from 'react-router-dom'
 import './css/empname.css'
 
 const Empname = () => {
+  // state to set a particular emp name to show it to Qr Scanner
     const[Ename,setname]= useState([]);
+
+    // store the searchparams URL in an array
     const [searchid]=useSearchParams();
+
+    // get the Data from serachid array 
     const id= searchid.get('Data');
 
+    // hook to fetch name of particular  employee using its unique id 
     useEffect(()=>{
         fetchName(id)
       },[])
 
+      // function to fetch name of employee
       const fetchName= async(id)=>{
         try {
-            const ename= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empname/${id}`)
-            setname(ename.data);
+            const ename= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empname/${id}`)  //get request to get details of employee using its id
+            setname(ename.data);  // set name through response.data which is in ename
         } catch (e) {
             console.error(e);
         }

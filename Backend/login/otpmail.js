@@ -24,4 +24,5 @@ async function sendOtpMail(formData)
          console.log(error);
      }
  }
+ // Export send otp mail function
  module.exports = sendOtpMail;

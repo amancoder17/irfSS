@@ -6,7 +6,7 @@ import { Link} from 'react-router-dom';
 
 const Navbar = () => {
     
-    const navRef = useRef();
+    const navRef = useRef();  // react hook to create mutable refrence
 
 	const showNavbar = () => {
 		navRef.current.classList.toggle(

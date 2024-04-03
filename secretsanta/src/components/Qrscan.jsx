@@ -5,15 +5,21 @@ import axios from 'axios';
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 const Qrscan = () => {
+
+  // set employees using use states
   const[employees,setEmployees]= useState([]);
+  // use navigate function for the navigation
   const navigate=useNavigate()
+
+  //call fetch Data function at the time of Page loading
 useEffect(()=>{
     fetchData()
   },[])
 
+  // Fetch data function for getting employees from the DB 
 const fetchData = async()=>{
     try {
-      const response= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`)
+      const response= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`) //Request 
       setEmployees(response.data);
       // console.log(employees);
     
