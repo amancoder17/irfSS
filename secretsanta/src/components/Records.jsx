@@ -4,13 +4,19 @@ import axios from 'axios';
 import Navbar from "./Navbar";
 
 const Records = () => {
+
+  // hook to set the records of secret santa 
     const [record,setrecord]=useState([]);
+
+    // useeffect to render the fetched records at the time of Page Loading
     useEffect(()=>{
         fetchrecord()
     },[])
+
+    // functions to fetch records 
     const fetchrecord= async()=>{
         try {
-        const rec= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`);
+        const rec= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`);   // API request to get the employess with records from DB.
         setrecord(rec.data)
             
         } catch (e) {

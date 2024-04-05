@@ -9,7 +9,7 @@ const ShowQr = () => {
     const id= searchid.get('Data');
     const [qr,setQr]=useState("")
     useEffect(()=>{
-        setQr(`http://api.qrserver.com/v1/create-qr-code/?data=${process.env.REACT_APP_ROUTE_KEY}/santaform/${id} &size=200x200`,[id])
+        setQr(`http://api.qrserver.com/v1/create-qr-code/?data=${process.env.REACT_APP_ROUTE_KEY}/santaform/${id} &size=200x200`,[id])      // api to generate qr
     })
 
 

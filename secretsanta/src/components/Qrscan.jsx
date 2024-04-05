@@ -19,7 +19,7 @@ useEffect(()=>{
   // Fetch data function for getting employees from the DB 
 const fetchData = async()=>{
     try {
-      const response= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`) //Request 
+      const response= await axios.get(`${process.env.REACT_APP_ROUTE_KEY}/empl`) //Request to get all the employees 
       setEmployees(response.data);
       // console.log(employees);
     
@@ -29,8 +29,7 @@ const fetchData = async()=>{
     }
 }
 const GenerateQR= async(id)=>{
-  // window.location.href=`/secretSanta?Data=${id}`;
-  navigate(`/secretSanta?Data=${id}`)
+  navigate(`/secretSanta?Data=${id}`)    // On click generate QR button we will navigate to a page where we get a QR code that individual employee
 
 
 }

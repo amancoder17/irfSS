@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
+  // React router function to navigate through pages
   const navigate = useNavigate();
 
+  // React hook to set user 
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -20,36 +22,40 @@ const Register = () => {
 
 
 
-
+// Selects the div all otfield's input  
   const inputs = document.querySelectorAll("#otfield input");
+
 
   inputs.forEach((input, index) => {
       input.dataset.index = index;
-      input.addEventListener("keyup", handleOtp);
-      input.addEventListener("paste", handleOnPasteOtp);
+      input.addEventListener("keyup", handleOtp);//  event listner which moves to next block on enetering value 
+      input.addEventListener("paste", handleOnPasteOtp);  // event listener which handels the paste function 
   });
   
+  // otp function which handels otp on entering values in blocks.
   function handleOtp(e) {
-      const input = e.target;
-      let value = input.value;
-      let isValidInput = value.match(/[0-9a-z]/gi);
+      const input = e.target;    
+      let value = input.value;   // input value of block which we enter
+      let isValidInput = value.match(/[0-9a-z]/gi);   // check fo validating input is it lies b/w 0 to 9 or a to z. 
       input.value = "";
-      input.value = isValidInput ? value[0] : "";
+      input.value = isValidInput ? value[0] : "";    // ternary operator if valid input it assigns with the value in input block otherwise blank string assigned to it.
   
-      let fieldIndex = input.dataset.index;
-      if (fieldIndex < inputs.length - 1 && isValidInput) {
+      let fieldIndex = input.dataset.index;        // get the index of input
+      if (fieldIndex < inputs.length - 1 && isValidInput) {        // if condition to jump on to next block automaticaly after entering value in it.
           input.nextElementSibling.focus();
       }
   
-      if (e.key === "Backspace" && fieldIndex > 0) {
+      if (e.key === "Backspace" && fieldIndex > 0) {     // if condition when we click on backspace
           input.previousElementSibling.focus();
       }
   }
+
+  // function for pasting otp from clipboard to input blocks
   function handleOnPasteOtp(e) {
-    const data = e.clipboardData.getData("text");
-    const value = data.split("");
-    if (value.length === inputs.length) {
-        inputs.forEach((input, index) => (input.value = value[index]));
+    const data = e.clipboardData.getData("text");   // gets the copied text data from clipboard and store it in const
+    const value = data.split("");   // splits the value sepreatly of the copied data
+    if (value.length === inputs.length) {    // checks that the length of value is equal to no of coloumns for otp
+        inputs.forEach((input, index) => (input.value = value[index]));   // assigns each value to each box of otp
     }
 }
 
@@ -67,6 +73,7 @@ const Register = () => {
 
 
 
+  // function to handle changes in input field 
   const handlechange = (e) => {
     e.preventDefault();
     const { name, value } = e.target
@@ -74,11 +81,19 @@ const Register = () => {
       ...user, [name]: value
     })
   }
+
+  // Hook state to set alert message when we enter email
   const [message, setMessage] = useState("");
+
+  // Hook state to set password alert when we enter password
   const [pass, setpass] = useState("");
 
+
+  // Hook state to store confirmed password
   const [confirmv, setConfirmv] = useState("");
 
+
+  // function that handels changes in input when we enter email
   const handlechangeemail = (e) => {
     e.preventDefault();
     let new_Email = e.target.value;
@@ -95,6 +110,7 @@ const Register = () => {
 
   }
 
+  // handels the changes in input of change password
   const handlechangepass = (e) => {
     e.preventDefault();
     let new_pass = e.target.value;
@@ -112,44 +128,46 @@ const Register = () => {
   }
 
 
+  //handles the changes in input of confirm password 
   const handlechangepassconfirm = (e) => {
     e.preventDefault();
     const inputValue = e.target.value;
     setConfirmv(inputValue)
   }
 
-
+// hook to set otp 
   const [Otp, setOtp] = useState("")
 
+  //  function to generate otp and handle sbmission and otp changes
   const otp = () => {
-    const resenbt = document.getElementById('resendo');
-    resenbt.disabled = true;
-    let otp_val = Math.floor((Math.random() * 900000) + 100000);
-    setOtp(otp_val)
-    const edis = document.getElementById('email')
+    const resenbt = document.getElementById('resendo');   // In starting the resend  button is disabeled
+    resenbt.disabled = true;                             
+    let otp_val = Math.floor((Math.random() * 900000) + 100000);   // method to generate a 6 digit otp
+    setOtp(otp_val)    // generated otp is set to otp using setotp.
+    const edis = document.getElementById('email')            // disabled the email input field after generating otp.
     edis.disabled = true;
-    const ndis = document.getElementById('inname')
+    const ndis = document.getElementById('inname')             // disabled the name input field after generating otp.
     ndis.disabled = true;
 
 
-    const emu = user.email;
-    const { name, password } = user
-    const valemail = validator.isEmail(emu)
-    if (valemail === true && password.length > 6 && name !== "" && password === confirmv) {
+    const emu = user.email;                     // stores the user email in emu
+    const { name, password } = user                       // calls name and password from user
+    const valemail = validator.isEmail(emu)           // checks that validates the entered email is valid or not
+    if (valemail === true && password.length > 6 && name !== "" && password === confirmv) {   // if condition to validate and then send otp 
       setTimeout(() => {
-        document.getElementById('resendo').disabled = null;
+        document.getElementById('resendo').disabled = null;                 // resend otp btn disabled for 20 seconds
       }, 20000);
       const pdis = document.getElementById('inpass')
-      pdis.disabled = true;
-      const cpdis = document.getElementById('inpasscon')
-      cpdis.disabled = true;
+      pdis.disabled = true;                                      // disabled paswoord input field
+      const cpdis = document.getElementById('inpasscon')            
+      cpdis.disabled = true;                                    // disabled password confirm field after otp generation
       const cred = { otp_val, emu }
       document.getElementById('resendo').style.display = 'block'
       document.getElementById('otfield').style.display = 'block';
       document.getElementById('oootpbtn').style.display = 'none';
       document.getElementById('rgbtn').style.display = 'block';
 
-      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/otpmail`, cred)
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/otpmail`, cred)      // post request to send otp for registration
         .then(res => console.log(res))
 
       toast('OTP sent to Email', {
@@ -178,12 +196,14 @@ const Register = () => {
 
   }
 
+
+  // function to register user when we click on register button 
   const register = () => {
     
 
     let validotp = "";
     inputs.forEach((input) => {
-        validotp += input.value;
+        validotp += input.value;                             // set valid otp from entered inputs in blocks
         // input.classList.add("disabled");
     });
 
@@ -192,10 +212,10 @@ const Register = () => {
 
     const { name, email, password } = user
     const valemail = validator.isEmail(email)
-    if (name && valemail && password.length > 6 && validotp == Otp) {
-      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/register`, user)
+    if (name && valemail && password.length > 6 && validotp == Otp) {          // check with various conditions
+      axios.post(`${process.env.REACT_APP_ROUTE_KEY}/register`, user)          // Post request to register admin 
         .then((res) => {
-          if (res.data.count === false) {
+          if (res.data.count === false) {          // check is maximum users limit reached or not
             toast('Maximum User Limit Reached', {
               style: {
                 background: 'red',
