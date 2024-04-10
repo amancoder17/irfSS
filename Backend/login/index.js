@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors(
     {
         origin:["https://secret-santa-cyan.vercel.app/"],
-        methods:["POST","GET"],
+        methods:["POST","GET","UPDATE","DELETE","PATCH"],
         credentials:true
     }
 ));
@@ -27,10 +27,6 @@ mongoose.connect('mongodb+srv://amanpanwarcs2019:9119Aman@cluster0.szdvs6c.mongo
 })
 .catch((err)=>{
     console.log(err);
-})
-
-app.get('/',(req,res)=>{
-    res.json("hello");
 })
 //Connecting Database
 
