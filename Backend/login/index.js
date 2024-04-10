@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors(
     {
-        origin:["hhttps://secret-santa-frontend-one.vercel.app/"],
+        origin:["hhttps://secret-santa-frontend-one.vercel.app"],
         methods:["POST","GET","UPDATE","DELETE","PATCH"],
         credentials:true
     }
