@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors(
     {
-        origin:[],
+        origin:["https://secret-santa-cyan.vercel.app/"],
         methods:["POST","GET"],
         credentials:true
     }
@@ -351,7 +351,6 @@ app.post('/emplist', async (req, res) => {
 })
 
 // console.log(process.env);
-
 
 app.listen(PORT, () => {
     console.log("server is up at port", PORT);
