@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors(
     {
         origin:["hhttps://secret-santa-frontend-one.vercel.app"],
-        methods:["POST","GET","UPDATE","DELETE","PATCH"],
+        methods:["POST","GET"],
         credentials:true
     }
 ));
