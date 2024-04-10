@@ -42,7 +42,13 @@ mongoose.connect('mongodb+srv://amanpanwarcs2019:9119Aman@cluster0.szdvs6c.mongo
 const User = require('./models/user');
 const Emp = require('./models/emp');
 
-
+app.get('/',(req,res)=>{
+    res.json(
+        
+            "Hello"
+        
+    )
+})
 // Login API
 app.post('/login', async (req, res) => {
     try {
