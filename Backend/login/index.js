@@ -10,7 +10,13 @@ const bcrypt = require('bcrypt');
 const PORT = process.env.PORT || 9002;
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors());
+app.use(cors(
+    {
+        origin:[],
+        methods:["POST","GET"],
+        credentials:true
+    }
+));
 
 
 // Connecting Database
